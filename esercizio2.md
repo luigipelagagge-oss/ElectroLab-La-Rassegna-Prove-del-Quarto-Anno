@@ -1,142 +1,82 @@
 ---
-title: "Esercizio 2 – Applicazione del Teorema di Thevenin"
-author: "Luigi"
-description: "Risoluzione di un circuito con diodo mediante semplificazione equivalente di Thevenin."
-style: |
-  body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    max-width: 900px;
-    margin: auto;
-    padding: 20px;
-    background: #f8f9fa;
-  }
-  h1, h2, h3 {
-    color: #003366;
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 4px;
-  }
-  .alert-box {
-    background-color: #e2e3e5;
-    border-left: 5px solid #003366;
-    padding: 15px;
-    margin: 20px 0;
-  }
-  img {
-    max-width: 100%;
-    border: 1px solid #ddd;
-    padding: 4px;
-    margin: 10px 0;
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
-  }
+layout: default
+title: "Esercizio 2 – Teorema di Thevenin"
 ---
 
 # Esercizio 2 – Linearizzazione con Thevenin
 
-<div style="margin: 15px 0;">
-  <a href="https://github.com/luigipelagagge-oss/ElectroLab-La-Rassegna-Prove-del-Quarto-Anno"
-     style="
-       display: inline-block;
-       padding: 10px 16px;
-       background-color: #003366;
-       color: white;
-       text-decoration: none;
-       border-radius: 6px;
-       font-weight: bold;
-     ">
-    🔍 Sorgente GitHub
-  </a>
-  <a href="./"
-     style="
-       display: inline-block;
-       padding: 10px 16px;
-       background-color: #666;
-       color: white;
-       text-decoration: none;
-       border-radius: 6px;
-       font-weight: bold;
-       margin-left: 10px;
-     ">
-    🏠 Torna alla Home
-  </a>
-</div>
+[🏠 Torna alla Home](./) | [🔍 Sorgente GitHub](https://github.com/luigipelagagge-oss/ElectroLab-La-Rassegna-Prove-del-Quarto-Anno)
 
 ---
 
-## 🎯 Obiettivo
-Determinare il punto di lavoro del diodo (Corrente $I_D$ e Tensione $V_D$).
-Poiché il diodo è inserito in una rete complessa, non è possibile applicare immediatamente la legge di Ohm. Dobbiamo prima **semplificare il circuito** che "alimenta" il diodo.
+## 🔗 Risorsa Fondamentale
+Prima di iniziare, puoi consultare la soluzione tecnica completa:
+👉 **[Apri la soluzione dettagliata su Overleaf](https://www.overleaf.com/read/jgyynkpccmbm#287a89)**
 
 ---
 
 ## 📐 Schema del Circuito
 
-![Schema Esercizio 2 con Thevenin](esercizio2.png)
+![Schema Esercizio 2](esercizio2.png)
 
 ---
 
-## 🧠 Richiami di Teoria: La Strategia Risolutiva
+## 🎯 Obiettivo
+Determinare il punto di lavoro del diodo (Corrente $I_D$ e Tensione $V_D$).
 
-Per risolvere circuiti lineari complessi con un componente non lineare (il diodo), si applica il **Teorema di Thevenin** ai terminali del diodo stesso.
-
-1.  **Isolare il componente:** Rimuoviamo idealmente il diodo dal circuito (punti A e B).
-2.  **Calcolare Vth (Tensione a vuoto):** È la tensione che si misura tra A e B senza il diodo.
-3.  **Calcolare Rth (Resistenza equivalente):** È la resistenza vista dai terminali A-B spegnendo i generatori (cortocircuitando i generatori di tensione).
-4.  **Ricollegare il diodo:** Il circuito diventa una semplice maglia con un generatore ($V_{th}$), una resistenza ($R_{th}$) e il diodo.
-
-<div class="alert-box">
-  <strong>💡 Nota Bene:</strong> Una volta ottenuto il circuito equivalente, se $V_{th} > 0.7V$, il diodo conduce e possiamo calcolare la corrente facilmente.
-</div>
+Il diodo è inserito in una rete complessa. Per analizzarlo, non possiamo usare subito la legge di Ohm. Dobbiamo **semplificare il circuito** che "alimenta" il diodo usando il **Teorema di Thevenin**.
 
 ---
 
-## ✍️ Svolgimento Guidato
+## 🧠 Strategia Risolutiva
 
-### Passo 1: Calcolo della Tensione Equivalente ($V_{th}$)
-Guardando il circuito "senza diodo", la tensione ai morsetti è determinata dal partitore di tensione formato dalle resistenze (supponiamo $R_1$ e $R_2$ se in configurazione standard).
+Procediamo in 4 step logici:
+
+1.  **Taglio:** Rimuoviamo idealmente il diodo dal circuito (morsetti A e B).
+2.  **Vth (Tensione Equivalente):** Calcoliamo la tensione a vuoto tra A e B.
+3.  **Rth (Resistenza Equivalente):** Calcoliamo la resistenza vista da A-B spegnendo i generatori (Voltage source = corto circuito).
+4.  **Analisi Finale:** Ricolleghiamo il diodo al nuovo circuito semplificato.
+
+> **💡 Nota Bene:**
+> Una volta ottenuto il circuito equivalente, se la tensione $V_{th}$ supera i **0.7V**, il diodo conduce.
+
+---
+
+## ✍️ Formule per lo Svolgimento
+
+### 1. Calcolo di $V_{th}$
+Il circuito senza diodo è un partitore di tensione. La tensione che il diodo "vedrebbe" prima di essere collegato è:
 
 $$V_{th} = V_{in} \cdot \frac{R_2}{R_1 + R_2}$$
 
-*(Sostituisci i valori numerici presenti nella tua traccia)*
+### 2. Calcolo di $R_{th}$
+Spegnendo il generatore $V_{in}$ (collegandolo a massa), le resistenze $R_1$ e $R_2$ risultano in parallelo. Se c'è una $R_3$ in serie al diodo, va sommata:
 
-### Passo 2: Calcolo della Resistenza Equivalente ($R_{th}$)
-Spegnendo il generatore $V_{in}$ (cortocircuito verso massa), le resistenze $R_1$ e $R_2$ risultano in parallelo rispetto ai morsetti.
-
-$$R_{th} = R_1 \parallel R_2 = \frac{R_1 \cdot R_2}{R_1 + R_2}$$
-
-Se c'è una resistenza in serie al diodo ($R_3$), questa va sommata al parallelo:
-$$R_{tot} = R_{th} + R_3$$
+$$R_{eq} = (R_1 \parallel R_2) + R_3 = \frac{R_1 \cdot R_2}{R_1 + R_2} + R_3$$
 
 ---
 
 <details>
-<summary><strong>✅ Clicca qui per la Soluzione Finale</strong></summary>
+<summary><strong>✅ Clicca qui per le conclusioni</strong></summary>
+<br>
 
-### Calcolo del Punto di Lavoro
+### Calcolo del Punto di Lavoro (Q)
 
-Una volta ottenuti $V_{th}$ e $R_{tot}$, analizziamo la maglia equivalente.
-
-**Verifica condizione ON:**
-Se $V_{th} > 0.7V$ (tensione di soglia del Silicio), il diodo è in conduzione.
+Una volta ottenuti $V_{th}$ e $R_{eq}$, analizziamo la maglia equivalente (una sola maglia).
 
 **Calcolo Corrente ($I_D$):**
-Applicando la legge di Kirchhoff alla maglia:
-$$I_D = \frac{V_{th} - V_{\gamma}}{R_{tot}}$$
-dove $V_{\gamma} \approx 0.7V$.
+Applicando Kirchhoff:
+$$I_D = \frac{V_{th} - 0.7V}{R_{eq}}$$
 
-**Calcolo Tensione ($V_{out}$ o $V_D$):**
-La tensione ai capi del diodo (se ON) è fissa a **0.7V**.
-Se richiesto calcolare la tensione su un carico $R_L$, si usa $V = R_L \cdot I_D$.
+**Calcolo Tensione ($V_{out}$):**
+Se il diodo è ON:
+$$V_D = 0.7V$$
+
+*(Per i valori numerici precisi, fai riferimento al link Overleaf in alto)*
 
 </details>
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin-top: 40px;">
-  <a href="esercizio1" style="text-decoration: none; color: #003366;">
-    <strong>← Esercizio Precedente</strong>
-  </a>
-  <a href="esercizio3" style="text-decoration: none; color: #003366;">
-    <strong>Prossimo Esercizio: Coppia Darlington →</strong>
-  </a>
-</div>
+**Navigazione:**
+[← Esercizio 1 (Diodi)](esercizio1) | [Esercizio 3 (Darlington) →](esercizio3)
