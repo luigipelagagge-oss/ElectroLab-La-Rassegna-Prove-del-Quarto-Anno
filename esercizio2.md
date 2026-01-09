@@ -24,17 +24,18 @@ Per vedere i grafici delle forme d'onda e la soluzione estesa:
 
 ## 🎯 Obiettivo
 Analizzare il funzionamento di una porta logica "Wired-AND" realizzata con diodi.
-Dati:
-* Tensione di alimentazione ($V_B$) = 5V
-* Resistenza ($R$) = 5 kΩ
-* Caduta sul diodo ($V_\gamma$) = 0.6V
+
+**Dati del problema:**
+* Tensione di alimentazione (**VB**) = 5V
+* Resistenza (**R**) = 5 kΩ
+* Caduta di tensione sul diodo (**V_gamma**) = 0.6V
 
 ---
 
 ## 🧠 Principio di Funzionamento
 
 Il circuito segue la logica del **"Minimo"**.
-La corrente scorre dall'alimentazione ($V_B$) verso l'ingresso che ha il potenziale più basso.
+La corrente scorre dall'alimentazione (VB) verso l'ingresso che ha il potenziale più basso.
 
 1.  **Se almeno un ingresso è BASSO (es. 0V):**
     Il diodo corrispondente conduce. La corrente attraversa la resistenza e scende verso massa attraverso quel diodo.
@@ -48,21 +49,21 @@ La corrente scorre dall'alimentazione ($V_B$) verso l'ingresso che ha il potenzi
 
 ## ✍️ Analisi dei Casi (Sintesi)
 
-Ecco come calcolare l'uscita $V_o$ in base agli ingressi $V_{i1}$ e $V_{i2}$:
+Ecco come calcolare l'uscita **Vout** in base agli ingressi **Vi1** e **Vi2**:
 
-### Caso 1: Un ingresso a massa ($0V$)
+### Caso 1: Un ingresso a massa (0V)
 Se anche uno solo degli ingressi è a 0V, il diodo conduce.
-> **V_out = 0V + 0.6V = 0.6V** (Livello Logico Basso)
+> **Vout = 0V + 0.6V = 0.6V** (Livello Logico Basso)
 
-### Caso 2: Ingressi intermedi ($2V$)
+### Caso 2: Ingressi intermedi (2V)
 Se l'ingresso più basso è a 2V (ad esempio l'onda quadra è alta a 2V e l'altro ingresso è a 2V o 5V):
 Il diodo conduce e somma la sua caduta.
-> **V_out = 2V + 0.6V = 2.6V**
+> **Vout = 2V + 0.6V = 2.6V**
 
-### Caso 3: Ingressi Alti ($5V$)
+### Caso 3: Ingressi Alti (5V)
 Se entrambi gli ingressi sono a 5V (o 4.5V come nel caso 5 del testo):
 Nessun diodo conduce. Non scorre corrente in R.
-> **V_out = 5V** (Livello Logico Alto)
+> **Vout = 5V** (Livello Logico Alto)
 
 ---
 
@@ -71,11 +72,11 @@ Nessun diodo conduce. Non scorre corrente in R.
 <br>
 
 Il circuito si comporta come una porta AND reale con un leggero difetto (offset):
-* **Logica 0:** L'uscita non è 0V precisi, ma **0.6V** (V_gamma).
+* **Logica 0:** L'uscita non è 0V precisi, ma **0.6V**.
 * **Logica 1:** L'uscita è **5V** solo se tutti gli ingressi sono alti.
 
 La regola d'oro per risolvere questo esercizio è:
-**V_out = (Valore dell'ingresso più basso) + 0.6V**
+**Vout = (Valore dell'ingresso più basso) + 0.6V**
 *(Limitato superiormente a 5V)*
 
 </details>
