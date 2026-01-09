@@ -19,8 +19,8 @@ Per vedere il documento originale con tutti i passaggi matematici estesi:
 
 Prima di iniziare i calcoli, osserviamo il circuito.
 
-![Schema Elettrico Generale](image1.png)
-*(Fig. 1: Schema circuitale base. Se non vedi l'immagine, assicurati che il file si chiami 'image1.png' nella cartella del progetto)*
+![Schema Elettrico Generale](fig_esercizio1.png)
+*(Fig. 1: Schema circuitale base. File: fig_esercizio1.png)*
 
 > **💡 Guida alla lettura dello schema:**
 > Abbiamo due generatori (**V1** e **V2**) che competono per far scorrere corrente nei diodi.
@@ -55,7 +55,7 @@ Il generatore V1 è molto forte (8V) rispetto a V2 (1V). Spingerà una forte cor
 
 **Ipotesi:** D1 **ON**, D2 **OFF**.
 
-![Circuito Caso 1](image2.png)
+![Circuito Caso 1](fig_esercizio1_solA.png)
 *(Fig. 2: Circuito equivalente con D1 sostituito da batteria 0.7V e D2 aperto)*
 
 **Svolgimento:**
@@ -78,7 +78,7 @@ Ora V1 è a terra (0V). Il generatore dominante è V2 (1V). La corrente cercher�
 
 **Ipotesi:** D1 **OFF**, D2 **ON**.
 
-![Circuito Caso 2](image5.png)
+![Circuito Caso 2](fig_esercizio1_solB.png)
 *(Fig. 3: Circuito equivalente con D2 sostituito da batteria 0.7V e D1 aperto)*
 
 **Svolgimento:**
