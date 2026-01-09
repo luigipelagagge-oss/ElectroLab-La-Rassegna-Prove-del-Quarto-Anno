@@ -34,7 +34,7 @@ style: |
 ---
 
 <!-- HERO IMAGE -->
-<img src="hero_diodo.png" alt="Immagine introduttiva sul diodo">
+<img src="descrizioneCorso.png" alt="Immagine introduttiva del corso" style="width:100%; border-radius: 8px; margin-bottom:20px;">
 
 # ElectroLab – La Rassegna Prove del Quarto Anno
 
