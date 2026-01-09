@@ -87,7 +87,7 @@ Ogni sezione collega direttamente la teoria agli esempi, alle figure e agli eser
 </div>
 
 <div style="margin: 15px 0;">
-  <a class="button" href="quiz_teoria.md">
+  <a class="button" href="quiz_teoria">
     📘 Quiz di teoria (100 domande)
   </a>
 </div>
@@ -101,7 +101,7 @@ Ogni sezione collega direttamente la teoria agli esempi, alle figure e agli eser
 <!-- ========================================================= -->
 
 - [Teoria del diodo](teoria_diodo.md)  
-- Presentazione (PDF / PPTX)  
+- <a href="https://drive.google.com/file/d/1Qd-2WncxP4frhkgmRPT3wXNbU2CIHl8i/view?usp=drive_link" target="_blank">Presentazione breve (PDF / PPTX)</a>  
 - [Podcast introduttivo](https://drive.google.com/file/d/1S_raID6DFThMGxMCIpaBAHuyRv7sGnkn/view?usp=sharing)  
 - [Video esplicativo](https://drive.google.com/file/d/17RoM_a7b-VmsSbo6m0x0IgH29aYeTuoM/view?usp=drive_link)
 
@@ -120,7 +120,7 @@ Ogni sezione collega direttamente la teoria agli esempi, alle figure e agli eser
   margin: 20px 0;
 ">
 📝 <strong>Prima di accedere agli esercizi:</strong><br>
-Rispondi a una domanda dal <a href="quiz_teoria.md">Quiz di teoria (100 domande)</a>  
+Rispondi a una domanda dal <a href="quiz_teoria">Quiz di teoria (100 domande)</a>  
 oppure prova il <a href="https://wayground.com/admin/quiz/6904bb9bbb06a0541d962e67">Quizizz ufficiale</a>.
 </div>
 
@@ -173,7 +173,6 @@ oppure prova il <a href="https://wayground.com/admin/quiz/6904bb9bbb06a0541d962e
 
 <div style="margin: 15px 0;">
   <a class="button" href="./">
-  🏠 Torna alla Home
-</a>
+    🏠 Torna alla Home
+  </a>
 </div>
-
