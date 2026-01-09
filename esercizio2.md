@@ -10,7 +10,7 @@ title: "Esercizio 2 – Teorema di Thevenin"
 ---
 
 ## 🔗 Risorsa Fondamentale
-Prima di iniziare, puoi consultare la soluzione tecnica completa:
+Per la soluzione completa passo-passo, fai riferimento al documento ufficiale:
 👉 **[Apri la soluzione dettagliata su Overleaf](https://www.overleaf.com/read/jgyynkpccmbm#287a89)**
 
 ---
@@ -18,61 +18,44 @@ Prima di iniziare, puoi consultare la soluzione tecnica completa:
 ## 📐 Schema del Circuito
 
 ![Schema Esercizio 2](esercizio2.png)
+*(Assicurati che il file immagine nella cartella si chiami esattamente esercizio2.png)*
 
 ---
 
 ## 🎯 Obiettivo
-Determinare il punto di lavoro del diodo (Corrente $I_D$ e Tensione $V_D$).
-
-Il diodo è inserito in una rete complessa. Per analizzarlo, non possiamo usare subito la legge di Ohm. Dobbiamo **semplificare il circuito** che "alimenta" il diodo usando il **Teorema di Thevenin**.
-
----
-
-## 🧠 Strategia Risolutiva
-
-Procediamo in 4 step logici:
-
-1.  **Taglio:** Rimuoviamo idealmente il diodo dal circuito (morsetti A e B).
-2.  **Vth (Tensione Equivalente):** Calcoliamo la tensione a vuoto tra A e B.
-3.  **Rth (Resistenza Equivalente):** Calcoliamo la resistenza vista da A-B spegnendo i generatori (Voltage source = corto circuito).
-4.  **Analisi Finale:** Ricolleghiamo il diodo al nuovo circuito semplificato.
-
-> **💡 Nota Bene:**
-> Una volta ottenuto il circuito equivalente, se la tensione $V_{th}$ supera i **0.7V**, il diodo conduce.
+Determinare il punto di lavoro del diodo. Essendo inserito in una rete complessa, dobbiamo semplificare il circuito a monte usando il **Teorema di Thevenin**.
 
 ---
 
 ## ✍️ Formule per lo Svolgimento
 
+Ecco i passaggi analitici per ottenere il circuito equivalente:
+
 ### 1. Calcolo di $V_{th}$
-Il circuito senza diodo è un partitore di tensione. La tensione che il diodo "vedrebbe" prima di essere collegato è:
+Il circuito senza diodo è un partitore di tensione. La tensione che il diodo "vedrebbe" ai suoi capi (A-B) prima di essere collegato è:
 
 $$V_{th} = V_{in} \cdot \frac{R_2}{R_1 + R_2}$$
 
 ### 2. Calcolo di $R_{th}$
-Spegnendo il generatore $V_{in}$ (collegandolo a massa), le resistenze $R_1$ e $R_2$ risultano in parallelo. Se c'è una $R_3$ in serie al diodo, va sommata:
+Spegnendo il generatore $V_{in}$ (collegandolo a massa), le resistenze $R_1$ e $R_2$ risultano in parallelo. Se c’è una resistenza $R_3$ in serie al ramo del diodo, questa va sommata al parallelo:
 
 $$R_{eq} = (R_1 \parallel R_2) + R_3 = \frac{R_1 \cdot R_2}{R_1 + R_2} + R_3$$
 
 ---
 
 <details>
-<summary><strong>✅ Clicca qui per le conclusioni</strong></summary>
+<summary><strong>✅ Clicca qui per la conclusione</strong></summary>
 <br>
 
-### Calcolo del Punto di Lavoro (Q)
+### Analisi del Circuito Equivalente
 
-Una volta ottenuti $V_{th}$ e $R_{eq}$, analizziamo la maglia equivalente (una sola maglia).
+Una volta ottenuti $V_{th}$ e $R_{eq}$, il circuito diventa una maglia elementare.
 
-**Calcolo Corrente ($I_D$):**
-Applicando Kirchhoff:
+**Condizione di ON:**
+Se $V_{th} > 0.7V$, il diodo conduce.
+
+**Corrente nel Diodo:**
 $$I_D = \frac{V_{th} - 0.7V}{R_{eq}}$$
-
-**Calcolo Tensione ($V_{out}$):**
-Se il diodo è ON:
-$$V_D = 0.7V$$
-
-*(Per i valori numerici precisi, fai riferimento al link Overleaf in alto)*
 
 </details>
 
