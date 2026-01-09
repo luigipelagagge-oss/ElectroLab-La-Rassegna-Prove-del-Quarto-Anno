@@ -19,10 +19,10 @@ In questo primo esercizio analizziamo il comportamento base del **Diodo al Silic
 ---
 
 ## 🎯 Obiettivo
-Determinare la corrente $I_D$ e la tensione $V_D$ in un circuito semplice composto da:
-* Un generatore di tensione continua $V_{CC}$.
-* Un resistore $R$ in serie.
-* Un diodo $D$.
+Determinare la corrente **Id** e la tensione **Vd** in un circuito semplice composto da:
+* Un generatore di tensione continua **Vcc**.
+* Un resistore **R** in serie.
+* Un diodo **D**.
 
 ---
 
@@ -32,22 +32,22 @@ Per trovare il punto di lavoro (Q) senza risolvere equazioni esponenziali comple
 
 1.  **Equazione alla Maglia:**
     Applicando la legge di Kirchhoff (KVL):
-    $$V_{CC} = R \cdot I_D + V_D$$
+    > **Vcc = R * Id + Vd**
 
 2.  **Punti Intercettati:**
     La retta di carico si traccia unendo due punti sugli assi del grafico I-V:
-    * **Asse Y (Cortocircuito del diodo):** Se $V_D = 0$, allora $I_{max} = V_{CC} / R$.
-    * **Asse X (Circuito aperto):** Se $I_D = 0$, allora $V_{max} = V_{CC}$.
+    * **Asse Y (Cortocircuito del diodo):** Se Vd = 0, allora **Imax = Vcc / R**.
+    * **Asse X (Circuito aperto):** Se Id = 0, allora **Vmax = Vcc**.
 
 3.  **Punto di Lavoro (Q):**
-    L'intersezione tra questa retta e la curva caratteristica del diodo ci dà i valori reali di $I_D$ e $V_D$.
+    L'intersezione tra questa retta e la curva caratteristica del diodo ci dà i valori reali di Id e Vd.
 
 ---
 
 ## ✍️ Regola Pratica (Modello a Caduta Costante)
 Per calcoli rapidi manuali, sostituiamo il diodo acceso con una batteria fissa da **0.7V**.
 
-$$I_D \approx \frac{V_{CC} - 0.7V}{R}$$
+> **Id = (Vcc - 0.7V) / R**
 
 ---
 
@@ -66,7 +66,7 @@ $$I_D \approx \frac{V_{CC} - 0.7V}{R}$$
 // --- PANIERE DELLE DOMANDE (Randomizzate) ---
 const questions = [
     {
-        text: "Qual è la tensione di soglia tipica (Vγ) per un diodo al Silicio in conduzione?",
+        text: "Qual è la tensione di soglia tipica (Vgamma) per un diodo al Silicio in conduzione?",
         options: ["0.2 V", "0.6 - 0.7 V", "1.5 V", "5 V"],
         correct: 1
     },
