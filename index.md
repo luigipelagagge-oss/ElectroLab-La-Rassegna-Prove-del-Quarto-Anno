@@ -172,8 +172,8 @@ oppure prova il <a href="https://wayground.com/admin/quiz/6904bb9bbb06a0541d962e
 <!-- ========================================================= -->
 
 <div style="margin: 15px 0;">
-  <a class="button" href="index.md">
-    🏠 Torna alla Home
-  </a>
+  <a class="button" href="./">
+  🏠 Torna alla Home
+</a>
 </div>
 
