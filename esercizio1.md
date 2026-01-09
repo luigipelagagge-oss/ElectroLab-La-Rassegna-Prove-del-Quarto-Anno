@@ -32,9 +32,10 @@ style: |
 ---
 
 ## 📐 Figura di riferimento
-*(Carica qui l’immagine estratta dal PDF)*
-
+*(Carica qui l’immagine estratta dal PDF, che in realtà nel nostro caso è un .png e deve essere nella root del nostro progetto)*
 ![Circuito esercizio 1](fig_esercizio1.png)
+
+ 
 
 ---
 
