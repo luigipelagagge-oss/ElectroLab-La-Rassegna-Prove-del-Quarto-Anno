@@ -18,7 +18,6 @@ Per la soluzione completa passo-passo, fai riferimento al documento ufficiale:
 ## 📐 Schema del Circuito
 
 ![Schema Esercizio 2](esercizio2.png)
-*(Assicurati che il file immagine nella cartella si chiami esattamente esercizio2.png)*
 
 ---
 
@@ -29,17 +28,17 @@ Determinare il punto di lavoro del diodo. Essendo inserito in una rete complessa
 
 ## ✍️ Formule per lo Svolgimento
 
-Ecco i passaggi analitici per ottenere il circuito equivalente:
+Ecco i passaggi analitici semplificati per ottenere il circuito equivalente:
 
-### 1. Calcolo di $V_{th}$
-Il circuito senza diodo è un partitore di tensione. La tensione che il diodo "vedrebbe" ai suoi capi (A-B) prima di essere collegato è:
+### 1. Calcolo di Vth (Tensione Equivalente)
+Il circuito senza diodo è un partitore di tensione. La tensione che il diodo "vede" ai suoi capi (A-B) è:
 
-$$V_{th} = V_{in} \cdot \frac{R_2}{R_1 + R_2}$$
+> **Vth = Vin × R2 / (R1 + R2)**
 
-### 2. Calcolo di $R_{th}$
-Spegnendo il generatore $V_{in}$ (collegandolo a massa), le resistenze $R_1$ e $R_2$ risultano in parallelo. Se c’è una resistenza $R_3$ in serie al ramo del diodo, questa va sommata al parallelo:
+### 2. Calcolo di Rth (Resistenza Equivalente)
+Spegnendo il generatore Vin (collegandolo a massa), le resistenze R1 e R2 risultano in parallelo. Se c’è una resistenza R3 in serie, va sommata:
 
-$$R_{eq} = (R_1 \parallel R_2) + R_3 = \frac{R_1 \cdot R_2}{R_1 + R_2} + R_3$$
+> **Req = (R1 × R2) / (R1 + R2) + R3**
 
 ---
 
@@ -49,13 +48,13 @@ $$R_{eq} = (R_1 \parallel R_2) + R_3 = \frac{R_1 \cdot R_2}{R_1 + R_2} + R_3$$
 
 ### Analisi del Circuito Equivalente
 
-Una volta ottenuti $V_{th}$ e $R_{eq}$, il circuito diventa una maglia elementare.
+Una volta ottenuti **Vth** e **Req**, il circuito diventa una maglia elementare.
 
 **Condizione di ON:**
-Se $V_{th} > 0.7V$, il diodo conduce.
+Se **Vth > 0.7 V**, il diodo conduce.
 
-**Corrente nel Diodo:**
-$$I_D = \frac{V_{th} - 0.7V}{R_{eq}}$$
+**Corrente nel Diodo (Id):**
+> **Id = (Vth - 0.7) / Req**
 
 </details>
 
