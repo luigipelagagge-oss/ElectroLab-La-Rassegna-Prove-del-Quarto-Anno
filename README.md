@@ -1,9 +1,66 @@
-# ElectroLab — Documento Tecnico Unico
+ # ⚡ ElectroLab - Rassegna Prove Quarto Anno
 
-ElectroLab è composto dai file index.md, teoria_diodo.md, quiz_teoria.md, esercizio1.md, esercizio2.md, esercizio3.md e dall’immagine descrizioneCorso.png. La homepage contiene la hero image che punta alla presentazione ufficiale, i pulsanti per il sorgente GitHub, il quiz su Quizizz, il quiz interno, la sezione Teoria, lo sbarramento e l’elenco degli esercizi. La navigazione del sito è rappresentata dalla sequenza: Homepage → Sorgente GitHub, Quizizz esterno, Quiz Teoria interno → Sbarramento → Esercizi (Esercizio 1, Esercizio 2, Esercizio 3). La sezione Teoria include Teoria del diodo, Presentazione breve, Podcast introduttivo e Video esplicativo. La mappa dei collegamenti è: Homepage → Hero image (presentazione ufficiale), Sorgente GitHub, Quizizz ufficiale, Quiz interno (quiz_teoria), Teoria (teoria_diodo, presentazione breve, podcast, video), Esercizi (1, 2, 3).
+> **Il laboratorio digitale per studenti di Elettronica.** > Raccolta di esercizi, richiami teorici, quiz e simulazioni per comprendere Diodi, BJT e circuiti reali.
 
-Per la manutenzione: in index.md la hero image è descrizioneCorso.png, i pulsanti usano la classe .button, i link ai quiz devono essere senza estensione (quiz_teoria), il link alla home deve essere ./, i box informativi sono div con bordo sinistro colorato. Per aggiungere un esercizio creare esercizio4.md e aggiungere in index.md la riga - [Esercizio 4](esercizio4.md). Per aggiornare la teoria modificare teoria_diodo.md. Per aggiornare il quiz interno modificare quiz_teoria.md usando la struttura: titolo della domanda, quattro opzioni, details con la soluzione. Per aggiornare media caricare su Drive, impostare “Chiunque abbia il link” e sostituire l’URL in index.md.
+[![GitHub Pages](https://img.shields.io/badge/Deploy-GitHub%20Pages-green)](https://luigipelagagge-oss.github.io/ElectroLab-La-Rassegna-Prove-del-Quarto-Anno/)
 
-Convenzioni: pulsanti .button, box informativi div, hero image in apertura, link esterni con target="_blank", link interni senza .md, diagrammi ASCII. Note GitHub Pages: deploy automatico, attesa 30–90 secondi, se appare il sorgente Markdown il link è errato, per tornare alla home usare ./.
+---
 
-Questo testo costituisce il punto di ripristino unico per ricostruire l’intero sito, ripristinare la navigazione, mantenere coerenza grafica e logica ed evitare errori di collegamento.
+## 📖 Descrizione del Progetto
+**ElectroLab** è un sito statico basato su Markdown, progettato per gli studenti del quarto anno dell'Istituto Tecnico. Il sito funge da "Rassegna Prove", offrendo un percorso guidato attraverso:
+1.  **Teoria:** Fisica dei semiconduttori e funzionamento dei componenti.
+2.  **Verifica:** Quiz a risposta multipla con soluzioni nascoste.
+3.  **Pratica:** Esercizi di analisi circuitale (Clippers, Thevenin, Darlington).
+
+Il sito è ospitato gratuitamente tramite **GitHub Pages**.
+
+---
+
+## 📂 Struttura del Repository
+
+Il progetto è mantenuto "piatto" (tutti i file nella root) per semplicità di gestione dei link.
+
+| File | Descrizione |
+| :--- | :--- |
+| `index.md` | **Homepage**. Contiene la navigazione, la hero image e l'indice dei contenuti. |
+| `teoria_diodo.md` | Pagina dedicata alla teoria (Fisica, Giunzione PN, Drogaggio). |
+| `quiz_teoria.md` | Quiz di autovalutazione (Domande + Soluzioni in `<details>`). |
+| `esercizioX.md` | File dei singoli esercizi (1, 2, 3...). |
+| `descrizioneCorso.png` | Hero image principale della Homepage. |
+| `fig_esercizioX.png` | Immagini associate agli esercizi specifici. |
+| `README.md` | Questo file (Manuale di manutenzione). |
+
+---
+
+## 🛠 Manuale di Manutenzione e Sviluppo
+
+Questa sezione funge da **Documento Tecnico Unico**. Seguire queste regole garantisce che la navigazione non si rompa e lo stile rimanga coerente.
+
+### 1. Regole sui Link (IMPORTANTE ⚠️)
+GitHub Pages converte i file Markdown in HTML. Per evitare errori 404:
+* **Link interni:** Non usare mai l'estensione `.md`.
+    * ✅ Corretto: `[Vai al Quiz](quiz_teoria)`
+    * ❌ Errato: `[Vai al Quiz](quiz_teoria.md)`
+* **Link alla Home:** Usare sempre `./` per tornare all'inizio.
+    * ✅ Corretto: `[Torna alla Home](./)`
+* **Link esterni:** Aggiungere sempre `target="_blank"` se si usa HTML puro, oppure verificare che il tema li apra correttamente.
+
+### 2. Aggiungere un Nuovo Esercizio
+Per inserire, ad esempio, l'**Esercizio 4**:
+1.  Creare il file `esercizio4.md`.
+2.  Copiare l'intestazione standard (Titolo, Link alla Home).
+3.  Caricare eventuali immagini (es. `fig_esercizio4.png`) nella cartella principale.
+4.  Aprire `index.md` e aggiungere la voce nella lista esercizi:
+    ```markdown
+    - [Esercizio 4: Titolo dell'esercizio](esercizio4)
+    ```
+
+### 3. Aggiornare il Quiz (`quiz_teoria.md`)
+Il quiz utilizza il tag HTML `<details>` per nascondere la soluzione. Mantenere questo formato:
+
+```markdown
+## Titolo della domanda?
+- A) Opzione errata
+- B) Opzione corretta
+- C) Opzione errata
+<details><summary>Mostra soluzione</summary>B - Spiegazione opzionale...</details>
