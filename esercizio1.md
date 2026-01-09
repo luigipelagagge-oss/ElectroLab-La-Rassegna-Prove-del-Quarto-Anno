@@ -9,142 +9,101 @@ title: "Esercizio 1 – Metodo degli Stati"
 
 ---
 
-## 🔗 Soluzione Completa e Dettagliata
+## 🔗 Soluzione Completa
 Per vedere il documento originale con tutti i passaggi matematici estesi:
 👉 **[Apri la soluzione su Overleaf](https://www.overleaf.com/read/wnhwjqmwqvvg#e56973)**
 
 ---
 
-## 📐 Schema e Dati del Problema
+## 📐 1. Analisi dello Schema
 
-Consideriamo il circuito seguente e analizziamolo per diversi valori della tensione di ingresso **V1**.
+Prima di iniziare i calcoli, osserviamo il circuito.
 
-![Schema Elettrico](image1.png)
-*(Assicurati che l'immagine dello schema si chiami image1.png)*
+![Schema Elettrico Generale](image1.png)
+*(Fig. 1: Schema circuitale base. Se non vedi l'immagine, assicurati che il file si chiami 'image1.png' nella cartella del progetto)*
 
-**Dati:**
-* **R1 = R2 = R3** = 1 kΩ
-* **V2** = 1 V
-* **Von** (Soglia Diodo) = 0.7 V
+> **💡 Guida alla lettura dello schema:**
+> Abbiamo due generatori (**V1** e **V2**) che competono per far scorrere corrente nei diodi.
+> * **V2** è fisso a **1V**.
+> * **V1** cambia nei vari quesiti.
+> * I diodi **D1** e **D2** funzionano come "valvole": permettono il passaggio solo in una direzione. Il nostro compito è capire quale "valvola" è aperta e quale è chiusa.
 
-**Obiettivo:** Determinare lo stato dei diodi (ON/OFF) e il punto di lavoro per:
-1.  V1 = **8 V**
-2.  V1 = **0 V**
-3.  V1 = **1 V**
-4.  V1 = **-10 V**
-
----
-
-## 🧠 Teoria: Il Metodo degli Stati
-
-Poiché non sappiamo a priori se i diodi conducono o no, usiamo un metodo iterativo:
-1.  **Ipotesi:** Immaginiamo uno stato (ON o OFF) per ogni diodo.
-2.  **Sostituzione:**
-    * **ON:** Sostituiamo il diodo con una batteria da **0.7V**.
-    * **OFF:** Sostituiamo il diodo con un **circuito aperto**.
-3.  **Calcolo:** Risolviamo il circuito lineare.
-4.  **Verifica:**
-    * Se avevamo ipotizzato ON: la corrente deve scorrere nel verso giusto (**Id > 0**).
-    * Se avevamo ipotizzato OFF: la tensione ai capi deve essere minore della soglia (**Vak < 0.7V**).
+**Dati del problema:**
+* Resistenze: **R1 = R2 = R3 = 1 kΩ**
+* Generatore fisso: **V2 = 1 V**
+* Soglia di accensione Diodo: **Von = 0.7 V**
 
 ---
 
-## 1️⃣ Caso A: Tensione V1 = 8 V
+## 🧠 2. Teoria: Il Metodo degli Stati
 
-**Analisi Intuitiva:** V1 è molto alto (8V). Spingerà corrente verso destra, accendendo D1. Probabilmente D2 sarà spento perché il catodo (nodo centrale) salirà di potenziale.
+Non possiamo usare la legge di Ohm direttamente perché i diodi sono componenti non lineari. Usiamo il **Metodo degli Stati**:
+
+1.  **IPOTESI:** Tiriamo a indovinare se i diodi sono ON (accesi) o OFF (spenti).
+2.  **CIRCUITO EQUIVALENTE:** Disegniamo il circuito sostituendo i diodi:
+    * *Diodo ON* $\rightarrow$ **Batteria da 0.7V**
+    * *Diodo OFF* $\rightarrow$ **Interruttore Aperto**
+3.  **CALCOLO:** Troviamo correnti e tensioni.
+4.  **VERIFICA:** Controlliamo se i risultati hanno senso fisico (es. non può scorrere corrente inversa in un diodo acceso).
+
+---
+
+## 3️⃣ Caso A: Tensione V1 = 8 V
+
+**Analisi Intuitiva:**
+Il generatore V1 è molto forte (8V) rispetto a V2 (1V). Spingerà una forte corrente che attiverà sicuramente D1. D2 si troverà probabilmente con una tensione troppo alta al catodo per condurre.
 
 **Ipotesi:** D1 **ON**, D2 **OFF**.
 
 ![Circuito Caso 1](image2.png)
+*(Fig. 2: Circuito equivalente con D1 sostituito da batteria 0.7V e D2 aperto)*
 
-**Calcoli:**
-Il ramo di D2 è aperto (non scorre corrente in R3). La corrente scorre solo nella maglia esterna:
-> **Id1 = (V1 - Von) / (R1 + R2)**
-> **Id1 = (8 - 0.7) / 2k = 3.65 mA**
-
-Calcoliamo la tensione su D2 (OFF) per verifica. Il nodo centrale A sta a:
-> Va = 0.7V + (Id1 * R2) = 0.7 + 3.65 = **4.35 V**
-> Vd2 = V2 - Va = 1 - 4.35 = **-3.35 V**
+**Svolgimento:**
+Essendo il ramo di D2 aperto, la corrente fluisce solo nella maglia esterna.
+$$I_{D1} = \frac{V_1 - V_{ON}}{R_1 + R_2} = \frac{8V - 0.7V}{2k\Omega} = \mathbf{3.65 mA}$$
 
 **Verifica:**
-* Id1 = 3.65 mA > 0 ✅ (OK)
-* Vd2 = -3.35 V < 0.7 V ✅ (OK, è interdetto)
+* La corrente $I_{D1}$ è positiva? **Sì (3.65 mA)**.
+* La tensione su D2 è minore di 0.7V? Calcoliamo il potenziale al nodo A: $V_A = 0.7V + (R_2 \cdot I_{D1}) = 4.35V$.
+    La tensione su D2 è $1V - 4.35V = -3.35V$. È minore di 0.7V? **Sì**.
 
-**Soluzione:** **D1 Conduce, D2 Interdetto.**
+✅ **Soluzione Confermata.**
 
 ---
 
-## 2️⃣ Caso B: Tensione V1 = 0 V
+## 4️⃣ Caso B: Tensione V1 = 0 V
 
-**Analisi Intuitiva:** V1 è a massa. Ora V2 (1V) è il potenziale più alto. Spingerà corrente verso D2. D1 ha l'anodo a potenziale basso, probabilmente sarà spento.
+**Analisi Intuitiva:**
+Ora V1 è a terra (0V). Il generatore dominante è V2 (1V). La corrente cercherà di scendere da V2 verso V1, attraversando D2.
 
 **Ipotesi:** D1 **OFF**, D2 **ON**.
 
 ![Circuito Caso 2](image5.png)
+*(Fig. 3: Circuito equivalente con D2 sostituito da batteria 0.7V e D1 aperto)*
 
-**Calcoli:**
-D1 è aperto. La corrente esce da V2, passa per D2 e R1 e finisce in V1 (che è 0V).
-> **Id2 = (V2 - Von - V1) / (R3 + R1)**
-> **Id2 = (1 - 0.7 - 0) / 2k = 0.15 mA**
-
-Verifica su D1 (OFF):
-Il nodo centrale (Anodo di D1) si trova a:
-> Va = R1 * Id2 = 1k * 0.15mA = **0.15 V**
-> Vd1 = Va - 0 = **0.15 V**
+**Svolgimento:**
+La corrente esce da V2, attraversa D2 e R1 e finisce a massa (V1).
+$$I_{D2} = \frac{V_2 - V_{ON} - V_1}{R_3 + R_1} = \frac{1V - 0.7V - 0V}{2k\Omega} = \mathbf{0.15 mA}$$
 
 **Verifica:**
-* Id2 > 0 ✅ (OK)
-* Vd1 = 0.15 V < 0.7 V ✅ (OK, il diodo è polarizzato direttamente ma **non abbastanza** per accendersi).
+* La corrente $I_{D2}$ è positiva? **Sì**.
+* D1 è spento? La tensione al nodo centrale è $V_A = R_1 \cdot I_{D2} = 0.15V$. Questa tensione (0.15V) non basta ad accendere D1 (serve 0.7V). Quindi D1 resta OFF.
 
-**Soluzione:** **D1 Interdetto, D2 Conduce.**
+✅ **Soluzione Confermata.**
 
 ---
 
-## 3️⃣ Caso C: Tensione V1 = 1 V
+## 5️⃣ Casi Successivi (V1 = 1V e V1 = -10V)
 
-Qui V1 e V2 sono uguali. Chi vince?
-Se proviamo l'ipotesi precedente (D1 OFF, D2 ON) o quella opposta, i calcoli ci guideranno.
-
-**Ipotesi Corretta:** D1 **ON**, D2 **OFF**. (La conduzione verso massa di D1 è favorita).
-
-**Calcoli:**
-Come nel caso 1, lavora la maglia esterna.
-> **Id1 = (1 - 0.7) / (R1 + R2) = 0.15 mA**
-
-Verifica su D2:
-> Va = 1 - (R1 * Id1) = 1 - 0.15 = 0.85 V
-> Vd2 = V2 - Va = 1 - 0.85 = **0.15 V**
-
-**Verifica:**
-* Id1 > 0 ✅
-* Vd2 = 0.15 V < 0.7 V ✅ (Anche qui, D2 ha una piccola tensione positiva ma insufficiente per accendersi).
-
----
-
-## 4️⃣ Caso D: Tensione V1 = -10 V
-
-**Analisi Intuitiva:** V1 è molto negativo. Attirerà tutta la corrente.
-D2 ha l'anodo a 1V e il catodo tirato giù verso -10V -> Sicuramente **ON**.
-D1 ha l'anodo tirato giù verso -10V -> Sicuramente **OFF**.
-
-**Ipotesi:** D1 **OFF**, D2 **ON**.
-
-**Calcoli:**
-La corrente parte da V2 e scende fino a V1.
-> **Id2 = (V2 - Von - V1) / (R3 + R1)**
-> **Id2 = (1 - 0.7 - (-10)) / 2k**
-> **Id2 = 10.3 / 2k = 5.15 mA**
-
-Verifica su D1:
-Il nodo A si trova a:
-> Va = V1 + (R1 * Id2) = -10 + 5.15 = **-4.85 V**
-> Vd1 = -4.85 V < 0.7 V ✅ (Fortemente interdetto)
+Per esercizio, prova ad applicare lo stesso metodo logico:
+* **V1 = 1V:** Situazione di equilibrio, ma D1 vince perché offre un percorso verso terra. (Risultato: D1 ON, D2 OFF).
+* **V1 = -10V:** V1 "risucchia" tutta la corrente. D2 conduce, D1 è interdetto.
 
 ---
 
 <div id="quiz-overlay" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:9999; display:flex; justify-content:center; align-items:center; color:white; font-family:sans-serif;">
     <div style="background:#222; padding:30px; border-radius:10px; max-width:600px; text-align:center; border: 2px solid #00ff00; box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);">
-        <h2 id="q-title">🔒 Accesso Limitato: Metodo degli Stati</h2>
+        <h2 id="q-title">🔒 Accesso Limitato: Verifica le tue conoscenze</h2>
         <p style="font-size:0.9em; color:#aaa;">Rispondi correttamente per sbloccare l'esercizio.</p>
         <hr style="border-color:#444; margin: 15px 0;">
         <p id="q-text" style="font-size:1.3em; margin:20px 0; font-weight:bold;">Caricamento domanda...</p>
@@ -154,32 +113,26 @@ Il nodo A si trova a:
 </div>
 
 <script>
-// --- PANIERE DOMANDE ESERCIZIO 1 ---
 const questions = [
     {
-        text: "In cosa consiste il 'Metodo degli Stati' per i diodi?",
-        options: ["Si calcola la derivata della corrente", "Si ipotizza lo stato (ON/OFF), si calcola e poi si verifica", "Si sostituiscono i diodi con resistenze fisse", "Si usa sempre la legge di Ohm generalizzata"],
+        text: "Qual è il primo passo del 'Metodo degli Stati'?",
+        options: ["Calcolare subito la corrente", "Fare un'ipotesi sullo stato dei diodi (ON/OFF)", "Sostituire i diodi con condensatori", "Misurare con il tester"],
         correct: 1
     },
     {
-        text: "Se ipotizzo che un diodo sia OFF (circuito aperto), quale condizione devo verificare alla fine?",
-        options: ["Che la corrente calcolata sia positiva", "Che la tensione ai suoi capi sia minore della soglia (Vak < Von)", "Che la potenza sia nulla", "Che la resistenza sia infinita"],
+        text: "Nel modello a caduta costante, con cosa sostituisci un diodo ON?",
+        options: ["Un filo ideale (0V)", "Una batteria da 0.7V", "Una resistenza infinita", "Un generatore di corrente"],
         correct: 1
     },
     {
-        text: "Se ipotizzo che un diodo sia ON, con cosa lo sostituisco nel circuito equivalente?",
-        options: ["Un cortocircuito ideale (filo)", "Una batteria da 0.7V (generatore di tensione)", "Una resistenza da 1kΩ", "Un generatore di corrente"],
+        text: "Se alla fine dei calcoli trovi una corrente negativa in un diodo ipotizzato ON, cosa significa?",
+        options: ["Che il diodo è rotto", "Che l'ipotesi iniziale era sbagliata", "Che hai scoperto una nuova fisica", "Nulla, va bene così"],
         correct: 1
     },
     {
-        text: "Nel caso V1 = 0V analizzato nel testo, il diodo D1 risultava avere ai capi 0.15V. In che stato si trova?",
-        options: ["ON, perché la tensione è positiva", "OFF, perché 0.15V < 0.7V (Soglia)", "Zona di Breakdown", "Non si può dire"],
-        correct: 1
-    },
-    {
-        text: "Cosa succede se l'ipotesi iniziale è sbagliata?",
-        options: ["Il circuito esplode", "I calcoli daranno un risultato incoerente (es. corrente negativa in un diodo ON)", "Bisogna cambiare i valori delle resistenze"],
-        correct: 1
+        text: "Nello schema di questo esercizio (V1=0V), perché D1 rimane spento?",
+        options: ["Perché la tensione ai suoi capi (0.15V) è minore della soglia (0.7V)", "Perché non c'è collegamento a massa", "Perché R2 è troppo piccola", "Perché V2 è negativo"],
+        correct: 0
     }
 ];
 
@@ -220,7 +173,7 @@ function checkAnswer(selectedIndex) {
     } else {
         const fb = document.getElementById("q-feedback");
         fb.style.color = "#ff4444";
-        fb.innerText = "❌ Errato. Riprova con un'altra domanda...";
+        fb.innerText = "❌ Errato. Riprova...";
         setTimeout(() => {
             fb.innerText = "";
             currentQuestionObj = getRandomQuestion();
