@@ -1,4 +1,4 @@
----
+ ---
 title: "Esercizio 2 – Analisi del Circuito con Diodo e Resistenze"
 author: "Luigi"
 description: "Determinazione dello stato del diodo e delle tensioni ai nodi in diverse condizioni di ingresso."
@@ -67,8 +67,8 @@ style: |
 ---
 
 ## 🔗 Link alla traccia originale
-[Apri su Overleaf](https://www.overleaf.com)  
-*(Sostituisci con il link corretto se necessario.)*
+
+[Apri su Overleaf](https://www.overleaf.com/read/jgyynkpccmbm#287a89)
 
 ---
 
@@ -101,12 +101,11 @@ style: |
 
 ## 🧮 Dati del circuito
 
-- R1 = …  
-- R2 = …  
-- V1 = …  
-- Diodo: modello a soglia (0.7 V)
-
-*(Inserisci i valori esatti dalla traccia.)*
+- R = 5 kΩ  
+- VB = 5 V  
+- Vγ = 0.6 V  
+- vi₁(t): onda quadra (ampiezza 2 V, periodo 2 ms)  
+- vi₂: variabile secondo i casi
 
 ---
 
@@ -116,49 +115,45 @@ Di seguito la struttura logica per ciascun valore di ingresso.
 
 ---
 
-## **1️⃣ Caso: V1 = …**
+## **1️⃣ Caso: vi₂ collegata a ground**
 
 ### Ipotesi iniziale  
-- Diodo probabilmente **ON/OFF** (valuta in base alla traccia)
+- D1 e D2 da verificare in base al valore istantaneo di vi₁(t)
 
 ### Procedura  
-1. Sostituire il diodo con il modello appropriato.  
-2. Calcolare la tensione al nodo A.  
-3. Verificare la coerenza dell’ipotesi.  
-4. Determinare correnti e tensioni.
-
-<div style="
-  padding: 12px;
-  background: #fff8e1;
-  border-left: 4px solid #ffb300;
-  margin: 15px 0;
-">
-  💡 <strong>Suggerimento:</strong> se la tensione trovata non rispetta la soglia del diodo, cambia ipotesi.
-</div>
+1. Considerare vi₁(t) = +2 V e vi₁(t) = –2 V.  
+2. Verificare la polarizzazione dei diodi.  
+3. Determinare vo(t).  
 
 ---
 
-## **2️⃣ Caso: V1 = …**
+## **2️⃣ Caso: vi₂ = 2 V costanti**
 
-Ripeti la procedura del caso precedente.
-
----
-
-## **3️⃣ Caso: V1 = …**
-
-Ripeti la procedura del caso precedente.
+Ripetere la procedura precedente, confrontando vi₁(t) con 2 V e con la soglia dei diodi.
 
 ---
 
-# 📊 Caratteristica di trasferimento (opzionale)
+## **3️⃣ Caso: vi₂ = 5 V costanti**
+
+Analisi identica, ma con soglia più alta per la conduzione.
+
+---
+
+## **4️⃣ Caso: vi₁(t) = onda quadra 4.5 V, vi₂ = 0 V**
+
+---
+
+## **5️⃣ Caso: vi₁(t) = onda quadra 4.5 V, vi₂ = 5 V**
+
+---
+
+# 📊 Forma d’onda di uscita (opzionale)
 
 Puoi tracciare:
 
-- **Vout(V1)**  
-- punti di commutazione del diodo  
-- zone lineari e non lineari  
-
-*(Aggiungi un grafico PNG se lo generi.)*
+- **vo(t)**  
+- zone di conduzione dei diodi  
+- punti di commutazione  
 
 ---
 
@@ -219,4 +214,5 @@ Puoi tracciare:
 ---
 
 Buono studio!
+
 
