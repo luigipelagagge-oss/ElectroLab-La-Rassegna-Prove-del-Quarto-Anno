@@ -23,65 +23,74 @@ In questo esercizio analizziamo un circuito a "ponte" alimentato da due generato
 *(Fig. 1: Schema circuitale. File: esercizio4.png)*
 
 **Dati del problema:**
-* Resistori: $R_1 = 1\,\text{k}\Omega$, $R_2 = 10\,\text{k}\Omega$, $R_3 = 10\,\text{k}\Omega$
-* Generatori: $V_1 = 15\,\text{V}$, $V_2 = 10\,\text{V}$
-* Diodi (Modello a soglia): $V_{ON} = 0.6\,\text{V}$
+* Resistori: **R1 = 1 kΩ**, **R2 = 10 kΩ**, **R3 = 10 kΩ**
+* Generatori: **V1 = 15 V**, **V2 = 10 V**
+* Diodi (Modello a soglia): **Von = 0.6 V**
 
 **Obiettivo:**
-Trovare la tensione e corrente su $D_1$ e $D_2$, e calcolare la tensione differenziale $V_{AB}$.
+Trovare la tensione e corrente su **D1** e **D2**, e calcolare la tensione differenziale **VAB** (ovvero Va - Vb).
 
 ---
 
 ## 🧠 2. Metodo degli Stati
 
 Come da prassi, ipotizziamo lo stato dei diodi.
-Osservando che $V_1 (15V) > V_2 (10V)$, è probabile che la corrente scorra da sinistra verso destra attraverso $D_1$. $D_2$ invece si trova su un ramo che potrebbe essere a potenziale inferiore rispetto al nodo A.
+Osservando che **V1 (15V) > V2 (10V)**, è probabile che la corrente scorra da sinistra verso destra attraverso **D1**.
+**D2** invece si trova su un ramo che potrebbe essere a potenziale inferiore rispetto al nodo A.
 
-### Ipotesi: $D_1$ ON, $D_2$ OFF
+### Ipotesi: D1 ON, D2 OFF
 
-1.  **D1 ON:** Sostituito da batteria $0.6V$.
-2.  **D2 OFF:** Sostituito da circuito aperto ($I=0$).
+1.  **D1 ON:** Sostituito da batteria **0.6V**.
+2.  **D2 OFF:** Sostituito da circuito aperto (**I = 0**).
 
 ---
 
 ## 3️⃣ Svolgimento
 
-Con $D_2$ aperto, il ramo centrale (R2) non conduce corrente. Il circuito diventa un'unica maglia esterna:
-$$V_1 \rightarrow R_1 \rightarrow D_1 \rightarrow R_3 \rightarrow V_2$$
+Con **D2 aperto**, il ramo centrale (R2) non conduce corrente. Il circuito diventa un'unica maglia esterna:
+> **V1 → R1 → D1 → R3 → V2**
 
-### A. Calcolo della Corrente $I_{D1}$
+### A. Calcolo della Corrente ID1
 Applicando la legge di Kirchhoff alla maglia:
 
-$$I_{D1} = \frac{V_1 - V_{ON} - V_2}{R_1 + R_3}$$
+> **ID1 = (V1 - Von - V2) / (R1 + R3)**
 
 Sostituendo i numeri:
-$$I_{D1} = \frac{15V - 0.6V - 10V}{1k\Omega + 10k\Omega} = \frac{4.4V}{11k\Omega} = \mathbf{0.4\, mA}$$
+> ID1 = (15V - 0.6V - 10V) / (1kΩ + 10kΩ)
+> ID1 = 4.4V / 11kΩ = **0.4 mA**
 
-✅ **Verifica:** La corrente è positiva ($>0$), quindi $D_1$ è effettivamente ON.
+✅ **Verifica:** La corrente è positiva (>0), quindi **D1 è effettivamente ON**.
 
-### B. Calcolo della Tensione su $D_2$ (Verifica OFF)
-Dobbiamo assicurarci che la tensione ai capi di $D_2$ sia minore di 0.6V.
-La tensione su $D_2$ è data dalla differenza di potenziale tra Anodo (B) e Catodo (A, o meglio il punto sotto R2, ma essendo $I=0$, non c'è caduta su R2).
+### B. Calcolo della Tensione su D2 (Verifica OFF)
+Dobbiamo assicurarci che la tensione ai capi di D2 sia minore di 0.6V.
+La tensione su D2 è data dalla differenza di potenziale tra Anodo (B) e Catodo (A).
+*Nota: Poiché I=0 su quel ramo, non c'è caduta su R2.*
 
-Applicando la LKT alla maglia destra inferiore:
-$$V_{D2} = -V_2 - (R_3 \cdot I_{D1})$$
-$$V_{D2} = -10V - (10k\Omega \cdot 0.4mA) = -10V - 4V = \mathbf{-14V}$$
+Applicando la legge delle tensioni (LKT) alla maglia destra inferiore:
+> **VD2 = -V2 - (R3 · ID1)**
 
-✅ **Verifica:** $-14V < 0.6V$. Il diodo $D_2$ è polarizzato inversamente, quindi è OFF.
+> VD2 = -10V - (10kΩ · 0.4mA)
+> VD2 = -10V - 4V = **-14V**
+
+✅ **Verifica:** -14V è minore di 0.6V. Il diodo D2 è polarizzato inversamente, quindi è **OFF**.
 
 ---
 
-## 4️⃣ Risultato: Tensione $V_{AB}$
+## 4️⃣ Risultato: Tensione VAB
 
 Dobbiamo trovare la differenza di potenziale tra il nodo A e il nodo B.
 
-1.  **Nodo B:** Essendo il ramo di $D_2$ aperto, non scorre corrente verso massa (se assumiamo il riferimento in basso a massa). Tuttavia, guardando lo schema, B è collegato a massa.
-    $$V_B = 0V$$
-2.  **Nodo A:** Possiamo calcolarlo partendo da $V_2$ e risalendo:
-    $$V_A = V_2 + (R_3 \cdot I_{D1}) = 10V + 4V = \mathbf{14V}$$
-    *(Oppure partendo da V1: $V_A = 15V - (1k \cdot 0.4m) - 0.6V = 14V$)*.
+1.  **Nodo B:** Essendo il ramo di D2 aperto e collegato a massa nello schema (o riferimento basso), e non scorrendo corrente in R2:
+    **VB = 0V**
 
-$$V_{AB} = V_A - V_B = 14V - 0V = \mathbf{14V}$$
+2.  **Nodo A:** Possiamo calcolarlo partendo da V2 e risalendo la resistenza R3:
+    **VA = V2 + (R3 · ID1)**
+    VA = 10V + (10kΩ · 0.4mA) = 10V + 4V = **14V**
+
+*(Verifica partendo da V1: VA = 15V - (1kΩ · 0.4mA) - 0.6V = 14V)*.
+
+### Calcolo Finale
+> **VAB = VA - VB = 14V - 0V = 14V**
 
 ---
 
@@ -119,58 +128,3 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function getRandomQuestion() {
         return questions[Math.floor(Math.random() * questions.length)];
-    }
-
-    let currentQuestionObj = getRandomQuestion();
-
-    function loadQuestion() {
-        const titleEl = document.getElementById("q-text");
-        const optsDiv = document.getElementById("q-options");
-        
-        if (!titleEl || !optsDiv) return;
-
-        titleEl.innerText = currentQuestionObj.text;
-        optsDiv.innerHTML = "";
-        
-        currentQuestionObj.options.forEach((opt, index) => {
-            let btn = document.createElement("button");
-            btn.innerText = opt;
-            btn.style.padding = "12px";
-            btn.style.cursor = "pointer";
-            btn.style.fontSize = "1em";
-            btn.style.background = "#333";
-            btn.style.color = "white";
-            btn.style.border = "1px solid #555";
-            btn.style.borderRadius = "5px";
-            
-            btn.addEventListener('click', function() {
-                checkAnswer(index);
-            });
-            
-            optsDiv.appendChild(btn);
-        });
-    }
-
-    function checkAnswer(selectedIndex) {
-        if (selectedIndex === currentQuestionObj.correct) {
-            const fb = document.getElementById("q-feedback");
-            fb.style.color = "#00ff00";
-            fb.innerText = "✅ Risposta Esatta!";
-            setTimeout(() => {
-                document.getElementById("quiz-overlay").style.display = "none";
-            }, 1000);
-        } else {
-            const fb = document.getElementById("q-feedback");
-            fb.style.color = "#ff4444";
-            fb.innerText = "❌ Riprova...";
-            setTimeout(() => {
-                fb.innerText = "";
-                currentQuestionObj = getRandomQuestion();
-                loadQuestion();
-            }, 1500);
-        }
-    }
-
-    loadQuestion();
-});
-</script>
