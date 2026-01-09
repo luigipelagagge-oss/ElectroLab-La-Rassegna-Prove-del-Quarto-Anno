@@ -1,126 +1,91 @@
 ---
-title: "Esercizio 3 – Clipper con Onda Triangolare e Doppio Ingresso"
-author: "Luigi"
-description: "Analisi del comportamento del circuito con diodi e onda triangolare per due condizioni di vi2."
-style: |
-  body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    max-width: 900px;
-    margin: auto;
-    padding: 20px;
-    background: #f8f9fa;
-  }
-  h1, h2, h3 {
-    color: #003366;
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 4px;
-  }
-  img {
-    max-width: 100%;
-    border: 1px solid #ddd;
-    padding: 4px;
-    margin: 10px 0;
-  }
+layout: default
+title: "Esercizio 3 – Forme d'Onda in Circuiti a Diodi"
 ---
 
-# Esercizio 3 – Clipper con Onda Triangolare
+# Esercizio 3 – Forme d'Onda (Selettore di Massimo)
 
-## 🔗 Link alla traccia originale
-[Apri su Overleaf](https://www.overleaf.com/read/vwzzvdrpwfqh#f5e496)
+[🏠 Torna alla Home](./) | [🔍 Sorgente GitHub](https://github.com/luigipelagagge-oss/ElectroLab-La-Rassegna-Prove-del-Quarto-Anno)
 
 ---
 
-## 📐 Figura di riferimento
-*(Carica qui l’immagine estratta dal PDF)*
+## 📐 Schema del Circuito
 
-![Circuito esercizio 3](fig_esercizio3.png)
-
----
-
-## 📘 Richiami di teoria utili
-
-Questo esercizio richiede di comprendere:
-
-### • Funzionamento dei clipper con riferimento esterno  
-Il diodo conduce quando:
-**V_anodo − V_catodo ≥ VON**
-
-Con modello a soglia:
-- **VON = 0.6 V**
-
-### • Onda triangolare  
-- Ampiezza: 0 → 5 V  
-- Duty cycle: 50%  
-- Periodo: 200 ms  
-
-### • Effetto del riferimento vi2  
-Il valore di vi2 determina **la soglia di clipping**:
-- verso l’alto se il diodo è orientato verso il nodo di uscita  
-- verso il basso se orientato verso massa
+![Schema Selettore a Diodi](image1.png)
+*(Circuito composto da due diodi con catodi in comune e resistenza verso massa. Nota: Assicurati che l'immagine si chiami `image1.png`)*
 
 ---
 
-## 🧮 Dati del circuito
+## 🎯 Obiettivo
+Analizzare la risposta temporale $v_o(t)$ di un circuito **Selettore di Massimo (Analog OR)**.
+A differenza dei casi statici, qui analizziamo cosa succede quando l'ingresso varia nel tempo (onda triangolare), calcolando esattamente **quando** i diodi si accendono e si spengono.
 
-- R = 5 kΩ  
-- VON = 0.6 V  
-- vi1(t): onda triangolare 0–5 V  
-- vi2(t): variabile nei due casi
-
----
-
-# 🔍 Analisi dei casi
-
-## **1️⃣ Caso: vi2(t) = 0 V**
-
-### Condizione di conduzione
-Il diodo conduce quando:
-**vi1 ≥ 0.6 V**
-
-### Risultato
-- La parte superiore dell’onda viene limitata a **0.6 V**
-- Per valori inferiori a 0.6 V:
-  **diodo OFF → vo = vi1**
-
-### Forma d’onda attesa
-- Crescita lineare da 0 a 0.6 V  
-- Clipping piatto a 0.6 V  
-- Discesa lineare fino a 0 V  
+**Dati del problema:**
+* Resistenza di carico ($R$) = 5 kΩ
+* Tensione di soglia diodo ($V_\gamma$) = 0.6 V
+* **Ingresso 1 ($v_{i1}$):** Onda triangolare (0V $\to$ 5V $\to$ 0V) con periodo $T=200$ ms.
+* **Ingresso 2 ($v_{i2}$):** Tensione continua (0V o 5V).
 
 ---
 
-## **2️⃣ Caso: vi2(t) = 5 V**
+## 🧠 Svolgimento Analitico
 
-### Condizione di conduzione
-Il diodo conduce quando:
-**vi1 ≥ 5.6 V**
+La funzione di trasferimento logica del circuito è:
+$$v_o(t) = \max(v_{i1}(t), v_{i2}(t)) - 0.6V$$
 
-Ma l’onda triangolare arriva solo a 5 V → **mai sufficiente**
-
-### Risultato
-- Il diodo è **sempre OFF**
-- **vo = vi1(t)** (nessun clipping)
+### Analisi dell'Onda Triangolare
+La rampa sale linearmente da 0 a 5V in 100 ms.
+La pendenza ($m$) è:
+$$m = \frac{5V}{100ms} = 0.05 \, V/ms$$
 
 ---
 
-# 📊 Forma d’onda di uscita
+### 1️⃣ Caso A: Ingresso 2 a Massa ($v_{i2} = 0V$)
+Il secondo diodo è spento. Analizziamo solo l'onda triangolare sul primo diodo.
+Il diodo conduce solo quando l'ingresso supera la soglia di **0.6 V**.
 
-Puoi aggiungere un grafico PNG con:
+**Quando si accende ($t_{on}$)?**
+$$0.05 \cdot t_{on} = 0.6 \implies t_{on} = \frac{0.6}{0.05} = \mathbf{12 \, ms}$$
 
-- onda triangolare di ingresso  
-- soglia di clipping  
-- uscita risultante  
+**Quando si spegne ($t_{off}$)?**
+Per simmetria rispetto al picco (100 ms), si spegne 12 ms prima della fine:
+$$t_{off} = 200 - 12 = \mathbf{188 \, ms}$$
 
-*(Caricalo come fig_esercizio3_output.png se lo generi.)*
+**Risultato:**
+* Da 0 a 12 ms: **Uscita 0V** (Zona Morta)
+* Da 12 a 188 ms: **Uscita segue l'ingresso** (meno 0.6V)
+* Picco massimo: $5V - 0.6V = \mathbf{4.4V}$
 
 ---
 
-# 🎥 Video correlati
+### 2️⃣ Caso B: Ingresso 2 Alto ($v_{i2} = 5V$)
+L'ingresso 2 è fisso a 5V.
+L'onda triangolare sull'ingresso 1 non supera mai i 5V (arriva al massimo a 5V).
+Pertanto, "vince" sempre l'ingresso 2.
 
-- [videoDiodo.mp4](videoDiodo.mp4)  
-- [Silicio_drogato_la_magia_del_diodo.mp4](Silicio_drogato_la_magia_del_diodo.mp4)
+**Risultato:**
+L'uscita è costante e determinata dalla batteria fissa.
+$$v_o = 5V - 0.6V = \mathbf{4.4V \, (Costante)}$$
 
 ---
 
-Buono studio!
+## 📚 Sintesi Teorica: Le Porte Logiche a Diodi
+
+Questo esercizio (insieme all'Esercizio 2) copre le due configurazioni fondamentali della logica Diodo-Resistenza (**DL - Diode Logic**):
+
+| Configurazione | Nome Logico | Funzione Matematica | Comportamento Elettrico |
+| :--- | :--- | :--- | :--- |
+| **Esercizio 2** | **AND** (Minimo) | $Y = \min(A, B)$ | "Tira verso il basso" (Pull-down dei diodi, R verso $V_{CC}$) |
+| **Esercizio 3** | **OR** (Massimo) | $Y = \max(A, B)$ | "Tira verso l'alto" (Pull-up dei diodi, R verso Massa) |
+
+### 🔗 Approfondimenti Esterni Consigliati
+Per consolidare la teoria sulle porte logiche e i circuiti digitali di base:
+
+* **[Logica a Diodi (Wikipedia)](https://it.wikipedia.org/wiki/Logica_a_diodi)** - Panoramica essenziale.
+* **[Logic Gates - Electronics Tutorials](https://www.electronics-tutorials.ws/logic/logic_1.html)** (Inglese) - Ottima risorsa con schemi chiari.
+* **[Digital Logic - AllAboutCircuits](https://www.allaboutcircuits.com/textbook/digital/chpt-3/logic-gates/)** (Inglese) - Manuale completo online.
+
+---
+
+**Navigazione:**
+[← Esercizio 2 (Porta AND)](esercizio2) | [🏠 Torna alla Home](./)
