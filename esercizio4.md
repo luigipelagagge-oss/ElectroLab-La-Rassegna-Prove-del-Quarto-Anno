@@ -1,0 +1,176 @@
+---
+layout: default
+title: "Esercizio 4 – Ponte Asimmetrico"
+---
+
+# Esercizio 4 – Analisi del punto di lavoro (Ponte Asimmetrico)
+
+[🏠 Torna alla Home](./) | [← Esercizio 3](esercizio3)
+
+---
+
+## 🔗 Soluzione Completa
+Per scaricare il PDF con la soluzione formale e i passaggi estesi:
+👉 **[Apri la soluzione su Overleaf](https://www.overleaf.com/read/ngwfkrtyscpy#cc4ee5)**
+
+---
+
+## 📐 1. Analisi dello Schema
+
+In questo esercizio analizziamo un circuito a "ponte" alimentato da due generatori di tensione.
+
+![Schema Esercizio 4](esercizio4.png)
+*(Fig. 1: Schema circuitale. File: esercizio4.png)*
+
+**Dati del problema:**
+* Resistori: $R_1 = 1\,\text{k}\Omega$, $R_2 = 10\,\text{k}\Omega$, $R_3 = 10\,\text{k}\Omega$
+* Generatori: $V_1 = 15\,\text{V}$, $V_2 = 10\,\text{V}$
+* Diodi (Modello a soglia): $V_{ON} = 0.6\,\text{V}$
+
+**Obiettivo:**
+Trovare la tensione e corrente su $D_1$ e $D_2$, e calcolare la tensione differenziale $V_{AB}$.
+
+---
+
+## 🧠 2. Metodo degli Stati
+
+Come da prassi, ipotizziamo lo stato dei diodi.
+Osservando che $V_1 (15V) > V_2 (10V)$, è probabile che la corrente scorra da sinistra verso destra attraverso $D_1$. $D_2$ invece si trova su un ramo che potrebbe essere a potenziale inferiore rispetto al nodo A.
+
+### Ipotesi: $D_1$ ON, $D_2$ OFF
+
+1.  **D1 ON:** Sostituito da batteria $0.6V$.
+2.  **D2 OFF:** Sostituito da circuito aperto ($I=0$).
+
+---
+
+## 3️⃣ Svolgimento
+
+Con $D_2$ aperto, il ramo centrale (R2) non conduce corrente. Il circuito diventa un'unica maglia esterna:
+$$V_1 \rightarrow R_1 \rightarrow D_1 \rightarrow R_3 \rightarrow V_2$$
+
+### A. Calcolo della Corrente $I_{D1}$
+Applicando la legge di Kirchhoff alla maglia:
+
+$$I_{D1} = \frac{V_1 - V_{ON} - V_2}{R_1 + R_3}$$
+
+Sostituendo i numeri:
+$$I_{D1} = \frac{15V - 0.6V - 10V}{1k\Omega + 10k\Omega} = \frac{4.4V}{11k\Omega} = \mathbf{0.4\, mA}$$
+
+✅ **Verifica:** La corrente è positiva ($>0$), quindi $D_1$ è effettivamente ON.
+
+### B. Calcolo della Tensione su $D_2$ (Verifica OFF)
+Dobbiamo assicurarci che la tensione ai capi di $D_2$ sia minore di 0.6V.
+La tensione su $D_2$ è data dalla differenza di potenziale tra Anodo (B) e Catodo (A, o meglio il punto sotto R2, ma essendo $I=0$, non c'è caduta su R2).
+
+Applicando la LKT alla maglia destra inferiore:
+$$V_{D2} = -V_2 - (R_3 \cdot I_{D1})$$
+$$V_{D2} = -10V - (10k\Omega \cdot 0.4mA) = -10V - 4V = \mathbf{-14V}$$
+
+✅ **Verifica:** $-14V < 0.6V$. Il diodo $D_2$ è polarizzato inversamente, quindi è OFF.
+
+---
+
+## 4️⃣ Risultato: Tensione $V_{AB}$
+
+Dobbiamo trovare la differenza di potenziale tra il nodo A e il nodo B.
+
+1.  **Nodo B:** Essendo il ramo di $D_2$ aperto, non scorre corrente verso massa (se assumiamo il riferimento in basso a massa). Tuttavia, guardando lo schema, B è collegato a massa.
+    $$V_B = 0V$$
+2.  **Nodo A:** Possiamo calcolarlo partendo da $V_2$ e risalendo:
+    $$V_A = V_2 + (R_3 \cdot I_{D1}) = 10V + 4V = \mathbf{14V}$$
+    *(Oppure partendo da V1: $V_A = 15V - (1k \cdot 0.4m) - 0.6V = 14V$)*.
+
+$$V_{AB} = V_A - V_B = 14V - 0V = \mathbf{14V}$$
+
+---
+
+<div id="quiz-overlay" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.96); z-index:99999; display:flex; justify-content:center; align-items:center; color:white; font-family:sans-serif;">
+    <div style="background:#222; padding:30px; border-radius:10px; max-width:600px; text-align:center; border: 2px solid #00ff00; box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);">
+        <h2 id="q-title">🔒 Esercizio 4 Bloccato</h2>
+        <p style="font-size:0.9em; color:#aaa;">Rispondi correttamente per visualizzare la soluzione.</p>
+        <hr style="border-color:#444; margin: 15px 0;">
+        <p id="q-text" style="font-size:1.3em; margin:20px 0; font-weight:bold;">Caricamento domanda...</p>
+        <div id="q-options" style="display:flex; flex-direction:column; gap:10px;"></div>
+        <p id="q-feedback" style="margin-top:20px; font-weight:bold; min-height: 1.2em;"></p>
+    </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+
+    const questions = [
+        {
+            text: "In questo esercizio, quanto vale la tensione di soglia (Von) utilizzata?",
+            options: ["0.7 V", "0.6 V", "0 V (Diodo Ideale)", "1.4 V"],
+            correct: 1
+        },
+        {
+            text: "Perché la tensione VB è pari a 0V?",
+            options: ["Perché il diodo D2 è ON", "Perché il nodo B è collegato a massa e nel ramo non scorre corrente", "Perché V2 è spento", "È un errore di stampa"],
+            correct: 1
+        },
+        {
+            text: "Se D1 è ON e D2 è OFF, com'è la configurazione del circuito?",
+            options: ["Una maglia unica esterna", "Due maglie separate", "Un cortocircuito totale", "Nessuna corrente scorre"],
+            correct: 0
+        }
+    ];
+
+    function getRandomQuestion() {
+        return questions[Math.floor(Math.random() * questions.length)];
+    }
+
+    let currentQuestionObj = getRandomQuestion();
+
+    function loadQuestion() {
+        const titleEl = document.getElementById("q-text");
+        const optsDiv = document.getElementById("q-options");
+        
+        if (!titleEl || !optsDiv) return;
+
+        titleEl.innerText = currentQuestionObj.text;
+        optsDiv.innerHTML = "";
+        
+        currentQuestionObj.options.forEach((opt, index) => {
+            let btn = document.createElement("button");
+            btn.innerText = opt;
+            btn.style.padding = "12px";
+            btn.style.cursor = "pointer";
+            btn.style.fontSize = "1em";
+            btn.style.background = "#333";
+            btn.style.color = "white";
+            btn.style.border = "1px solid #555";
+            btn.style.borderRadius = "5px";
+            
+            btn.addEventListener('click', function() {
+                checkAnswer(index);
+            });
+            
+            optsDiv.appendChild(btn);
+        });
+    }
+
+    function checkAnswer(selectedIndex) {
+        if (selectedIndex === currentQuestionObj.correct) {
+            const fb = document.getElementById("q-feedback");
+            fb.style.color = "#00ff00";
+            fb.innerText = "✅ Risposta Esatta!";
+            setTimeout(() => {
+                document.getElementById("quiz-overlay").style.display = "none";
+            }, 1000);
+        } else {
+            const fb = document.getElementById("q-feedback");
+            fb.style.color = "#ff4444";
+            fb.innerText = "❌ Riprova...";
+            setTimeout(() => {
+                fb.innerText = "";
+                currentQuestionObj = getRandomQuestion();
+                loadQuestion();
+            }, 1500);
+        }
+    }
+
+    loadQuestion();
+});
+</script>
