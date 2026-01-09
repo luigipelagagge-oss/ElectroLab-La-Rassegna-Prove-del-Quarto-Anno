@@ -1,7 +1,7 @@
 ---
 title: "ElectroLab – La Rassegna Prove del Quarto Anno"
 author: "Luigi"
-description: "ElectroLab è la rassegna prove dedicata agli studenti del quarto anno di elettronica. Esercizi, teoria essenziale, figure e contenuti multimediali per comprendere diodi, BJT e circuiti reali."
+description: "Portale didattico per la consultazione di teoria, figure, esercizi e contenuti multimediali dedicati ai diodi e ai circuiti elettronici."
 style: |
   body {
     font-family: Arial, sans-serif;
@@ -18,8 +18,7 @@ style: |
   }
   img {
     max-width: 100%;
-    border: 1px solid #ddd;
-    padding: 4px;
+    border-radius: 8px;
     margin: 10px 0;
   }
   .button {
@@ -34,13 +33,8 @@ style: |
   }
 ---
 
-<!--
-  HOMEPAGE DEL PROGETTO ELECTROLAB
-  Questo file mostra agli studenti:
-  - come si struttura una homepage in Markdown
-  - come si usano box grafici, pulsanti HTML e icone
-  - come si integrano contenuti multimediali esterni (Google Drive)
--->
+<!-- HERO IMAGE -->
+<img src="hero_diodo.png" alt="Immagine introduttiva sul diodo">
 
 # ElectroLab – La Rassegna Prove del Quarto Anno
 
@@ -48,117 +42,93 @@ style: |
   padding: 12px;
   background: #e8f1ff;
   border-left: 4px solid #003366;
-  margin: 15px 0;
+  margin: 20px 0;
 ">
-  📘 <strong>Benvenuto in ElectroLab!</strong><br>
-  Questo portale raccoglie esercizi, teoria, figure e contenuti multimediali per aiutarti a comprendere i semiconduttori e i circuiti reali.
-</div>
-
-<!-- Pulsante per vedere il sorgente del progetto -->
-<a class="button" href="https://github.com/luigipelagagge-oss/ElectroLab-La-Rassegna-Prove-del-Quarto-Anno">
-  🔍 Vedi il sorgente del progetto su GitHub
-</a>
-
----
-
-## 🧭 Dove mi trovo?
-
-<div style="
-  padding: 10px;
-  background: #eef7ee;
-  border-left: 4px solid #2e7d32;
-  margin: 15px 0;
-  font-size: 0.95em;
-">
-  📂 <strong>Sezione:</strong> Home → Indice generale del progetto
+📘 <strong>Nota didattica:</strong> ElectroLab è organizzato per facilitare la consultazione.  
+Ogni sezione collega direttamente la teoria agli esempi, alle figure e agli esercizi, così da permettere allo studente di trovare rapidamente ciò che serve per analizzare i circuiti.
 </div>
 
 ---
 
-## 📘 Contenuti principali
+# 🔵 Navigazione principale
 
-### 🔹 Teoria del Diodo  
-Richiami essenziali dalla presentazione *DiodoIntroduzione*  
-→ [teoria_diodo.md](teoria_diodo.md)
+<div style="margin: 15px 0;">
+  <a class="button" href="https://github.com/luigipelagagge-oss/ElectroLab-La-Rassegna-Prove-del-Quarto-Anno">
+    📂 Apri il sorgente del progetto
+  </a>
+</div>
 
-### 🔹 Rassegna Prove  
-Esercizi con figure, link Overleaf e richiami teorici:
+<div style="margin: 15px 0;">
+  <a class="button" href="https://wayground.com/admin/quiz/6904bb9bbb06a0541d962e67">
+    📝 Apri il quiz su Quizizz
+  </a>
+</div>
 
-- [Esercizio 1](esercizio1.md)  
-- [Esercizio 2](esercizio2.md)  
-- [Esercizio 3](esercizio3.md)
+<div style="margin: 15px 0;">
+  <a class="button" href="quiz_teoria.md">
+    📘 Quiz di teoria (100 domande)
+  </a>
+</div>
 
 ---
 
-## 🎧 Podcast didattico
+# 📚 Teoria
+
+- [Teoria del diodo](teoria_diodo.md)  
+- Presentazione (PDF / PPTX)  
+- [Podcast introduttivo](https://drive.google.com/file/d/1S_raID6DFThMGxMCIpaBAHuyRv7sGnkn/view?usp=sharing)  
+- [Video esplicativo](https://drive.google.com/file/d/17RoM_a7b-VmsSbo6m0x0IgH29aYeTuoM/view?usp=drive_link)
+
+---
+
+# 🧪 Sbarramento prima degli esercizi
 
 <div style="
   padding: 12px;
   background: #fff8e1;
   border-left: 4px solid #ffb300;
-  margin: 15px 0;
+  margin: 20px 0;
 ">
-  💡 <strong>Ascolta il podcast introduttivo:</strong><br>
-  Una spiegazione guidata sui concetti fondamentali del diodo.
+📝 <strong>Prima di accedere agli esercizi:</strong><br>
+Rispondi a una domanda dal <a href="quiz_teoria.md">Quiz di teoria (100 domande)</a>  
+oppure prova il <a href="https://wayground.com/admin/quiz/6904bb9bbb06a0541d962e67">Quizizz ufficiale</a>.
 </div>
 
+---
+
+# 🧭 Esercizi
+
+- [Esercizio 1](esercizio1.md)  
+- [Esercizio 2](esercizio2.md)  
+- [Esercizio 3](esercizio3.md)  
+*(aggiungi qui gli altri esercizi)*
+
+---
+
+# 🎧 Podcast
+
 <div style="margin: 15px 0;">
-  <a href="https://drive.google.com/file/d/1S_raID6DFThMGxMCIpaBAHuyRv7sGnkn/view?usp=sharing"
-     style="
-       display: inline-block;
-       padding: 10px 16px;
-       background-color: #006699;
-       color: white;
-       text-decoration: none;
-       border-radius: 6px;
-       font-weight: bold;
-     ">
-    🎧 Ascolta il podcast su Google Drive
+  <a class="button" href="https://drive.google.com/file/d/1S_raID6DFThMGxMCIpaBAHuyRv7sGnkn/view?usp=sharing">
+    🎧 Ascolta il podcast
+  </a>
+</div>
+
+# 🎥 Video
+
+<div style="margin: 15px 0;">
+  <a class="button" href="https://drive.google.com/file/d/17RoM_a7b-VmsSbo6m0x0IgH29aYeTuoM/view?usp=drive_link">
+    🎥 Guarda il video
   </a>
 </div>
 
 ---
 
-## 🎥 Video didattico
-
-<div style="
-  padding: 12px;
-  background: #e8f1ff;
-  border-left: 4px solid #003366;
-  margin: 15px 0;
-">
-  🎥 <strong>Video esplicativo:</strong><br>
-  Un approfondimento visivo sul comportamento del diodo.
-</div>
+# 🏠 Torna alla Home
 
 <div style="margin: 15px 0;">
-  <a href="https://drive.google.com/file/d/17RoM_a7b-VmsSbo6m0x0IgH29aYeTuoM/view?usp=drive_link"
-     style="
-       display: inline-block;
-       padding: 10px 16px;
-       background-color: #003366;
-       color: white;
-       text-decoration: none;
-       border-radius: 6px;
-       font-weight: bold;
-     ">
-    🎥 Guarda il video su Google Drive
+  <a class="button" href="index.md">
+    🏠 Torna alla Home
   </a>
 </div>
 
----
-
-## 🎯 Obiettivo del progetto
-
-<div style="
-  padding: 12px;
-  background: #ffecec;
-  border-left: 4px solid #cc0000;
-  margin: 15px 0;
-">
-  ⚠️ <strong>Attenzione:</strong> ElectroLab non è un semplice archivio di esercizi.<br>
-  È uno spazio operativo dove teoria, immagini, calcoli e contenuti multimediali si integrano per rendere l’elettronica più comprensibile e applicabile.
-</div>
-
-Buono studio!
 
