@@ -118,73 +118,91 @@ Per esercizio, prova ad applicare lo stesso metodo logico:
 </div>
 
 <script>
-const questions = [
-    {
-        text: "Qual è il primo passo del 'Metodo degli Stati'?",
-        options: ["Calcolare subito la corrente", "Fare un'ipotesi sullo stato dei diodi (ON/OFF)", "Sostituire i diodi con condensatori", "Misurare con il tester"],
-        correct: 1
-    },
-    {
-        text: "Nel modello a caduta costante, con cosa sostituisci un diodo ON?",
-        options: ["Un filo ideale (0V)", "Una batteria da 0.7V", "Una resistenza infinita", "Un generatore di corrente"],
-        correct: 1
-    },
-    {
-        text: "Se alla fine dei calcoli trovi una corrente negativa in un diodo ipotizzato ON, cosa significa?",
-        options: ["Che il diodo è rotto", "Che l'ipotesi iniziale era sbagliata", "Che hai scoperto una nuova fisica", "Nulla, va bene così"],
-        correct: 1
-    },
-    {
-        text: "Nello schema di questo esercizio (V1=0V), perché D1 rimane spento?",
-        options: ["Perché la tensione ai suoi capi (0.15V) è minore della soglia (0.7V)", "Perché non c'è collegamento a massa", "Perché R2 è troppo piccola", "Perché V2 è negativo"],
-        correct: 0
+document.addEventListener("DOMContentLoaded", function() {
+
+    const questions = [
+        {
+            text: "Qual è il primo passo del 'Metodo degli Stati'?",
+            options: ["Calcolare subito la corrente", "Fare un'ipotesi sullo stato dei diodi (ON/OFF)", "Sostituire i diodi con condensatori", "Misurare con il tester"],
+            correct: 1
+        },
+        {
+            text: "Nel modello a caduta costante, con cosa sostituisci un diodo ON?",
+            options: ["Un filo ideale (0V)", "Una batteria da 0.7V", "Una resistenza infinita", "Un generatore di corrente"],
+            correct: 1
+        },
+        {
+            text: "Se alla fine dei calcoli trovi una corrente negativa in un diodo ipotizzato ON, cosa significa?",
+            options: ["Che il diodo è rotto", "Che l'ipotesi iniziale era sbagliata", "Che hai scoperto una nuova fisica", "Nulla, va bene così"],
+            correct: 1
+        },
+        {
+            text: "Nello schema di questo esercizio (V1=0V), perché D1 rimane spento?",
+            options: ["Perché la tensione ai suoi capi (0.15V) è minore della soglia (0.7V)", "Perché non c'è collegamento a massa", "Perché R2 è troppo piccola", "Perché V2 è negativo"],
+            correct: 0
+        }
+    ];
+
+    function getRandomQuestion() {
+        return questions[Math.floor(Math.random() * questions.length)];
     }
-];
 
-function getRandomQuestion() {
-    return questions[Math.floor(Math.random() * questions.length)];
-}
+    let currentQuestionObj = getRandomQuestion();
 
-let currentQuestionObj = getRandomQuestion();
+    function loadQuestion() {
+        const titleEl = document.getElementById("q-text");
+        const optsDiv = document.getElementById("q-options");
+        
+        if (!titleEl || !optsDiv) {
+            console.error("Elementi del quiz non trovati!");
+            return;
+        }
 
-function loadQuestion() {
-    document.getElementById("q-text").innerText = currentQuestionObj.text;
-    const optsDiv = document.getElementById("q-options");
-    optsDiv.innerHTML = "";
-    
-    currentQuestionObj.options.forEach((opt, index) => {
-        let btn = document.createElement("button");
-        btn.innerText = opt;
-        btn.style.padding = "12px";
-        btn.style.cursor = "pointer";
-        btn.style.fontSize = "1em";
-        btn.style.background = "#333";
-        btn.style.color = "white";
-        btn.style.border = "1px solid #555";
-        btn.style.borderRadius = "5px";
-        btn.onmouseover = () => btn.style.background = "#444";
-        btn.onmouseout = () => btn.style.background = "#333";
-        btn.onclick = () => checkAnswer(index);
-        optsDiv.appendChild(btn);
-    });
-}
-
-function checkAnswer(selectedIndex) {
-    if (selectedIndex === currentQuestionObj.correct) {
-        const fb = document.getElementById("q-feedback");
-        fb.style.color = "#00ff00";
-        fb.innerText = "✅ Risposta Esatta! Accesso consentito.";
-        setTimeout(() => document.getElementById("quiz-overlay").style.display = "none", 1000);
-    } else {
-        const fb = document.getElementById("q-feedback");
-        fb.style.color = "#ff4444";
-        fb.innerText = "❌ Errato. Riprova...";
-        setTimeout(() => {
-            fb.innerText = "";
-            currentQuestionObj = getRandomQuestion();
-            loadQuestion();
-        }, 1500);
+        titleEl.innerText = currentQuestionObj.text;
+        optsDiv.innerHTML = "";
+        
+        currentQuestionObj.options.forEach((opt, index) => {
+            let btn = document.createElement("button");
+            btn.innerText = opt;
+            btn.style.padding = "12px";
+            btn.style.cursor = "pointer";
+            btn.style.fontSize = "1em";
+            btn.style.background = "#333";
+            btn.style.color = "white";
+            btn.style.border = "1px solid #555";
+            btn.style.borderRadius = "5px";
+            btn.onmouseover = () => btn.style.background = "#444";
+            btn.onmouseout = () => btn.style.background = "#333";
+            
+            // Aggiungiamo l'event listener direttamente qui
+            btn.addEventListener('click', function() {
+                checkAnswer(index);
+            });
+            
+            optsDiv.appendChild(btn);
+        });
     }
-}
-loadQuestion();
+
+    function checkAnswer(selectedIndex) {
+        if (selectedIndex === currentQuestionObj.correct) {
+            const fb = document.getElementById("q-feedback");
+            fb.style.color = "#00ff00";
+            fb.innerText = "✅ Risposta Esatta! Accesso consentito.";
+            setTimeout(() => document.getElementById("quiz-overlay").style.display = "none", 1000);
+        } else {
+            const fb = document.getElementById("q-feedback");
+            fb.style.color = "#ff4444";
+            fb.innerText = "❌ Errato. Riprova...";
+            setTimeout(() => {
+                fb.innerText = "";
+                currentQuestionObj = getRandomQuestion();
+                loadQuestion();
+            }, 1500);
+        }
+    }
+
+    // Avvia il caricamento
+    loadQuestion();
+
+});
 </script>
