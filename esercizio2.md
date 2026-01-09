@@ -5,7 +5,7 @@ title: "Esercizio 2 – Porta Logica AND a Diodi"
 
 # Esercizio 2 – Porta Logica AND a Diodi
 
-[🏠 Torna alla Home](./) | [🔍 Sorgente GitHub](https://github.com/luigipelagagge-oss/ElectroLab-La-Rassegna-Prove-del-Quarto-Anno)
+[🏠 Torna alla Home](./) | [Esercizio 3 (Selettore di Massimo) →](esercizio3)
 
 ---
 
@@ -28,7 +28,7 @@ Analizzare il funzionamento di una porta logica "Wired-AND" realizzata con diodi
 **Dati del problema:**
 * Tensione di alimentazione (**VB**) = 5V
 * Resistenza (**R**) = 5 kΩ
-* Caduta di tensione sul diodo (**V_gamma**) = 0.6V
+* Caduta di tensione sul diodo (**Vgamma**) = 0.6V
 
 ---
 
@@ -67,21 +67,91 @@ Nessun diodo conduce. Non scorre corrente in R.
 
 ---
 
-<details>
-<summary><strong>✅ Conclusione Didattica</strong></summary>
-<br>
+<div id="quiz-overlay" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:9999; display:flex; justify-content:center; align-items:center; color:white; font-family:sans-serif;">
+    <div style="background:#222; padding:30px; border-radius:10px; max-width:600px; text-align:center; border: 2px solid #00ff00; box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);">
+        <h2 id="q-title">🔒 Accesso Limitato: Logica AND</h2>
+        <p style="font-size:0.9em; color:#aaa;">Rispondi correttamente per sbloccare l'esercizio.</p>
+        <hr style="border-color:#444; margin: 15px 0;">
+        <p id="q-text" style="font-size:1.3em; margin:20px 0; font-weight:bold;">Caricamento domanda...</p>
+        <div id="q-options" style="display:flex; flex-direction:column; gap:10px;"></div>
+        <p id="q-feedback" style="margin-top:20px; font-weight:bold; min-height: 1.2em;"></p>
+    </div>
+</div>
 
-Il circuito si comporta come una porta AND reale con un leggero difetto (offset):
-* **Logica 0:** L'uscita non è 0V precisi, ma **0.6V**.
-* **Logica 1:** L'uscita è **5V** solo se tutti gli ingressi sono alti.
+<script>
+// --- PANIERE DOMANDE ESERCIZIO 2 (AND LOGIC) ---
+const questions = [
+    {
+        text: "In una logica AND a diodi (Pull-Up), l'uscita va alta (5V) solo se...",
+        options: ["Almeno un ingresso è basso", "Tutti gli ingressi sono alti", "Tutti gli ingressi sono a massa", "C'è un'onda triangolare"],
+        correct: 1
+    },
+    {
+        text: "Se il catodo di un diodo è a 0V e l'anodo è collegato a 5V tramite una resistenza, il diodo è...",
+        options: ["Polarizzato Direttamente (ON)", "Polarizzato Inversamente (OFF)", "In Breakdown"],
+        correct: 0
+    },
+    {
+        text: "Qual è la funzione matematica approssimata di questo circuito?",
+        options: ["V_out = MAX(Ingressi)", "V_out = MIN(Ingressi) + 0.6V", "V_out = Somma(Ingressi)", "V_out = 0V sempre"],
+        correct: 1
+    },
+    {
+        text: "Se uno degli ingressi è a 0V, quanto vale circa l'uscita?",
+        options: ["5V", "2.5V", "0.6V (V_gamma)", "-5V"],
+        correct: 2
+    },
+    {
+        text: "A cosa serve la resistenza R verso i 5V (Pull-up)?",
+        options: ["A tirare su la tensione quando i diodi sono spenti", "A scaldare il circuito", "A limitare la frequenza", "Non serve a nulla"],
+        correct: 0
+    }
+];
 
-La regola d'oro per risolvere questo esercizio è:
-**Vout = (Valore dell'ingresso più basso) + 0.6V**
-*(Limitato superiormente a 5V)*
+function getRandomQuestion() {
+    return questions[Math.floor(Math.random() * questions.length)];
+}
 
-</details>
+let currentQuestionObj = getRandomQuestion();
 
----
+function loadQuestion() {
+    document.getElementById("q-text").innerText = currentQuestionObj.text;
+    const optsDiv = document.getElementById("q-options");
+    optsDiv.innerHTML = "";
+    
+    currentQuestionObj.options.forEach((opt, index) => {
+        let btn = document.createElement("button");
+        btn.innerText = opt;
+        btn.style.padding = "12px";
+        btn.style.cursor = "pointer";
+        btn.style.fontSize = "1em";
+        btn.style.background = "#333";
+        btn.style.color = "white";
+        btn.style.border = "1px solid #555";
+        btn.style.borderRadius = "5px";
+        btn.onmouseover = () => btn.style.background = "#444";
+        btn.onmouseout = () => btn.style.background = "#333";
+        btn.onclick = () => checkAnswer(index);
+        optsDiv.appendChild(btn);
+    });
+}
 
-**Navigazione:**
-[← Esercizio 1 (Diodi)](esercizio1) | [Esercizio 3 (Onda Triangolare) →](esercizio3)
+function checkAnswer(selectedIndex) {
+    if (selectedIndex === currentQuestionObj.correct) {
+        const fb = document.getElementById("q-feedback");
+        fb.style.color = "#00ff00";
+        fb.innerText = "✅ Risposta Esatta! Benvenuto.";
+        setTimeout(() => document.getElementById("quiz-overlay").style.display = "none", 1000);
+    } else {
+        const fb = document.getElementById("q-feedback");
+        fb.style.color = "#ff4444";
+        fb.innerText = "❌ Errato. Proviamo un'altra domanda...";
+        setTimeout(() => {
+            fb.innerText = "";
+            currentQuestionObj = getRandomQuestion();
+            loadQuestion();
+        }, 1500);
+    }
+}
+loadQuestion();
+</script>
