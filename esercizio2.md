@@ -1,7 +1,7 @@
 ---
-title: "Esercizio 2 – Clipper con Diodi e Segnali a Onda Quadra"
+title: "Esercizio 2 – Analisi del Circuito con Diodo e Resistenze"
 author: "Luigi"
-description: "Analisi del comportamento del circuito clipper con onda quadra e diverse condizioni di vi2."
+description: "Determinazione dello stato del diodo e delle tensioni ai nodi in diverse condizioni di ingresso."
 style: |
   body {
     font-family: Arial, sans-serif;
@@ -22,17 +22,62 @@ style: |
     padding: 4px;
     margin: 10px 0;
   }
+  .button {
+    display: inline-block;
+    padding: 10px 16px;
+    background-color: #003366;
+    color: white !important;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    margin: 10px 0;
+  }
 ---
 
-# Esercizio 2 – Clipper con Diodi e Onda Quadra
+<!--
+  FILE DIDATTICO PER GLI STUDENTI
+  Questo documento mostra come strutturare un esercizio tecnico con:
+  - box grafici
+  - breadcrumb
+  - pulsanti HTML
+  - sezioni chiare e coerenti
+-->
+
+# Esercizio 2 – Analisi del Circuito con Diodo e Resistenze
+
+<!-- Pulsante per vedere il sorgente del progetto -->
+<a class="button" href="https://github.com/luigipelagagge-oss/ElectroLab-La-Rassegna-Prove-del-Quarto-Anno">
+  🔍 Vedi il sorgente del progetto su GitHub
+</a>
+
+---
+
+## 🧭 Dove mi trovo?
+
+<div style="
+  padding: 10px;
+  background: #eef7ee;
+  border-left: 4px solid #2e7d32;
+  margin: 15px 0;
+  font-size: 0.95em;
+">
+  📂 <strong>Sezione:</strong> Rassegna Prove → Esercizio 2
+</div>
+
+---
 
 ## 🔗 Link alla traccia originale
-[Apri su Overleaf](https://www.overleaf.com/read/jgyynkpccmbm#287a89)
+[Apri su Overleaf](https://www.overleaf.com)  
+*(Sostituisci con il link corretto se necessario.)*
 
 ---
 
 ## 📐 Figura di riferimento
-*(Carica qui l’immagine estratta dal PDF)*
+
+<!--
+  L'immagine deve essere caricata nella root del repository.
+  Il nome del file deve corrispondere esattamente a quello usato qui.
+-->
 
 ![Circuito esercizio 2](fig_esercizio2.png)
 
@@ -40,125 +85,138 @@ style: |
 
 ## 📘 Richiami di teoria utili
 
-Per questo esercizio è fondamentale comprendere il funzionamento dei **clipper a diodo**:
-
-### • Diodo in conduzione (ON)
-Il diodo conduce quando:
-**V_anodo − V_catodo ≥ VON**
-
-Con modello a soglia:
-- **VON = 0.6 V**
-
-### • Diodo interdetto (OFF)
-Il diodo è aperto quando:
-**V_anodo − V_catodo < VON**
-
-### • Clipper con riferimento esterno
-La tensione di uscita viene limitata a:
-- **Vref + VON** (se il diodo è orientato verso l’alto)
-- **Vref − VON** (se orientato verso il basso)
+<div style="
+  padding: 12px;
+  background: #e8f1ff;
+  border-left: 4px solid #003366;
+  margin: 15px 0;
+">
+  📘 <strong>Concetti fondamentali da ricordare:</strong><br>
+  • Modello a soglia del diodo (0.7 V)<br>
+  • Metodo ipotesi → verifica → coerenza<br>
+  • Analisi nodale con diodi ON/OFF
+</div>
 
 ---
 
 ## 🧮 Dati del circuito
 
-- R = 5 kΩ  
-- VB = 5 V  
-- VON = 0.6 V  
-- vi1(t): onda quadra, ampiezza 2 V, periodo 2 ms  
-- vi2: variabile nei diversi casi
+- R1 = …  
+- R2 = …  
+- V1 = …  
+- Diodo: modello a soglia (0.7 V)
+
+*(Inserisci i valori esatti dalla traccia.)*
 
 ---
 
 # 🔍 Analisi dei casi
 
-## **1️⃣ Caso: vi2 collegata a massa (0 V)**
-
-### Comportamento atteso
-- Durante la semionda positiva di vi1, il diodo può andare in conduzione se:
-  **vi1 ≥ VON**
-- L’uscita viene limitata a:
-  **vo ≈ 0.6 V**
-- Durante la semionda negativa:
-  **diodo OFF → vo segue vi1**
-
-### Risultato qualitativo
-- Clipping superiore a **0.6 V**
-- Parte negativa non limitata
+Di seguito la struttura logica per ciascun valore di ingresso.
 
 ---
 
-## **2️⃣ Caso: vi2 = 2 V costanti**
+## **1️⃣ Caso: V1 = …**
 
-### Condizione di conduzione
-Il diodo conduce quando:
-**vi1 ≥ vi2 + VON = 2.6 V**
+### Ipotesi iniziale  
+- Diodo probabilmente **ON/OFF** (valuta in base alla traccia)
 
-Ma l’onda quadra ha ampiezza 2 V → **non raggiunge mai 2.6 V**
+### Procedura  
+1. Sostituire il diodo con il modello appropriato.  
+2. Calcolare la tensione al nodo A.  
+3. Verificare la coerenza dell’ipotesi.  
+4. Determinare correnti e tensioni.
 
-### Risultato
-- Il diodo è **sempre OFF**
-- **vo = vi1(t)** (nessun clipping)
-
----
-
-## **3️⃣ Caso: vi2 = 5 V costanti**
-
-### Condizione di conduzione
-Il diodo conduce quando:
-**vi1 ≥ 5.6 V**
-
-L’onda quadra non supera 2 V → **diodo sempre OFF**
-
-### Risultato
-- Nessun clipping  
-- **vo = vi1(t)**
+<div style="
+  padding: 12px;
+  background: #fff8e1;
+  border-left: 4px solid #ffb300;
+  margin: 15px 0;
+">
+  💡 <strong>Suggerimento:</strong> se la tensione trovata non rispetta la soglia del diodo, cambia ipotesi.
+</div>
 
 ---
 
-## **4️⃣ Caso: vi1(t) ampiezza 4.5 V, vi2 = 0 V**
+## **2️⃣ Caso: V1 = …**
 
-### Condizione di conduzione
-**vi1 ≥ 0.6 V**
-
-L’onda quadra raggiunge 4.5 V → il diodo conduce per tutta la parte positiva.
-
-### Risultato
-- Clipping superiore a **0.6 V**
-- Parte negativa segue vi1
+Ripeti la procedura del caso precedente.
 
 ---
 
-## **5️⃣ Caso: vi1(t) ampiezza 4.5 V, vi2 = 5 V**
+## **3️⃣ Caso: V1 = …**
 
-### Condizione di conduzione
-**vi1 ≥ 5.6 V**
-
-L’onda quadra arriva a 4.5 V → **mai sufficiente**
-
-### Risultato
-- Nessun clipping  
-- **vo = vi1(t)**
+Ripeti la procedura del caso precedente.
 
 ---
 
-# 📊 Forma d’onda di uscita
+# 📊 Caratteristica di trasferimento (opzionale)
 
-Per ogni caso puoi aggiungere un grafico PNG con:
+Puoi tracciare:
 
-- onda quadra di ingresso  
-- livello di clipping  
-- uscita risultante  
+- **Vout(V1)**  
+- punti di commutazione del diodo  
+- zone lineari e non lineari  
 
-*(Puoi caricare le figure quando le generi.)*
+*(Aggiungi un grafico PNG se lo generi.)*
 
 ---
 
-# 🎥 Video correlati
+# 🎧 Podcast correlato
 
-- [videoDiodo.mp4](videoDiodo.mp4)  
-- [Silicio_drogato_la_magia_del_diodo.mp4](Silicio_drogato_la_magia_del_diodo.mp4)
+<div style="
+  padding: 12px;
+  background: #e8f1ff;
+  border-left: 4px solid #003366;
+  margin: 15px 0;
+">
+  🎧 <strong>Ascolta il podcast introduttivo sui diodi:</strong>
+</div>
+
+<div style="margin: 15px 0;">
+  <a href="https://drive.google.com/file/d/1S_raID6DFThMGxMCIpaBAHuyRv7sGnkn/view?usp=sharing"
+     style="
+       display: inline-block;
+       padding: 10px 16px;
+       background-color: #006699;
+       color: white;
+       text-decoration: none;
+       border-radius: 6px;
+       font-weight: bold;
+     ">
+    🎧 Ascolta il podcast su Google Drive
+  </a>
+</div>
+
+---
+
+# 🎥 Video correlato
+
+<div style="
+  padding: 12px;
+  background: #fff8e1;
+  border-left: 4px solid #ffb300;
+  margin: 15px 0;
+">
+  🎥 <strong>Video esplicativo sul comportamento del diodo:</strong>
+</div>
+
+<div style="margin: 15px 0;">
+  <a href="https://drive.google.com/file/d/17RoM_a7b-VmsSbo6m0x0IgH29aYeTuoM/view?usp=drive_link"
+     style="
+       display: inline-block;
+       padding: 10px 16px;
+       background-color: #003366;
+       color: white;
+       text-decoration: none;
+       border-radius: 6px;
+       font-weight: bold;
+     ">
+    🎥 Guarda il video su Google Drive
+  </a>
+</div>
 
 ---
 
 Buono studio!
+
