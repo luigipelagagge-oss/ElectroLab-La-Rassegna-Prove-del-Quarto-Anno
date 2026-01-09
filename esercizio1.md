@@ -45,8 +45,8 @@ Non possiamo usare la legge di Ohm direttamente perché i diodi sono componenti 
     * **Diodo OFF** → Sostituisci con **Interruttore Aperto**
 3.  **CALCOLO:** Troviamo correnti e tensioni usando le leggi di Kirchhoff.
 4.  **VERIFICA:** Controlliamo se i risultati hanno senso fisico:
-    * Se ipotizzato ON: la corrente deve scorrere nel verso della freccia ($I_D > 0$).
-    * Se ipotizzato OFF: la tensione inversa non deve superare la soglia ($V_{AK} < 0.7V$).
+    * Se ipotizzato ON: la corrente deve scorrere nel verso della freccia (**Id > 0**).
+    * Se ipotizzato OFF: la tensione inversa non deve superare la soglia (**Vak < 0.7V**).
 
 ---
 
@@ -65,10 +65,11 @@ Essendo il ramo di D2 aperto, la corrente fluisce solo nella maglia esterna.
 $$I_{D1} = \frac{V_1 - V_{ON}}{R_1 + R_2} = \frac{8V - 0.7V}{2k\Omega} = \mathbf{3.65 mA}$$
 
 **Verifica:**
-* La corrente $I_{D1}$ è positiva? **Sì (3.65 mA)**.
+* La corrente Id1 è positiva? **Sì (3.65 mA)**.
 * La tensione su D2 è minore di 0.7V? Calcoliamo il potenziale al nodo A:
   $$V_A = 0.7V + (R_2 \cdot I_{D1}) = 4.35V$$
-  La tensione su D2 è $1V - 4.35V = -3.35V$. È minore di 0.7V? **Sì**.
+  La tensione su D2 è: **1V - 4.35V = -3.35V**.
+  È minore di 0.7V? **Sì**.
 
 ✅ **Soluzione Confermata.**
 
@@ -89,8 +90,9 @@ La corrente esce da V2, attraversa D2 e R1 e finisce a massa (V1).
 $$I_{D2} = \frac{V_2 - V_{ON} - V_1}{R_3 + R_1} = \frac{1V - 0.7V - 0V}{2k\Omega} = \mathbf{0.15 mA}$$
 
 **Verifica:**
-* La corrente $I_{D2}$ è positiva? **Sì**.
-* D1 è spento? La tensione al nodo centrale è $V_A = R_1 \cdot I_{D2} = 0.15V$. Questa tensione (0.15V) non basta ad accendere D1 (serve 0.7V). Quindi D1 resta OFF.
+* La corrente Id2 è positiva? **Sì**.
+* D1 è spento? La tensione al nodo centrale è **Va = R1 * Id2 = 0.15V**.
+  Questa tensione (0.15V) non basta ad accendere D1 (serve 0.7V). Quindi D1 resta OFF.
 
 ✅ **Soluzione Confermata.**
 
@@ -100,4 +102,33 @@ $$I_{D2} = \frac{V_2 - V_{ON} - V_1}{R_3 + R_1} = \frac{1V - 0.7V - 0V}{2k\Omega
 
 Per esercizio, prova ad applicare lo stesso metodo logico:
 * **V1 = 1V:** Situazione di equilibrio, ma D1 vince perché offre un percorso verso terra. (Risultato: D1 ON, D2 OFF).
-* **V1 = -10V:** V1 "risucchia" tutta la corrente.
+* **V1 = -10V:** V1 "risucchia" tutta la corrente. D2 conduce, D1 è interdetto.
+
+---
+
+<div id="quiz-overlay" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:9999; display:flex; justify-content:center; align-items:center; color:white; font-family:sans-serif;">
+    <div style="background:#222; padding:30px; border-radius:10px; max-width:600px; text-align:center; border: 2px solid #00ff00; box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);">
+        <h2 id="q-title">🔒 Accesso Limitato: Verifica le tue conoscenze</h2>
+        <p style="font-size:0.9em; color:#aaa;">Rispondi correttamente per sbloccare l'esercizio.</p>
+        <hr style="border-color:#444; margin: 15px 0;">
+        <p id="q-text" style="font-size:1.3em; margin:20px 0; font-weight:bold;">Caricamento domanda...</p>
+        <div id="q-options" style="display:flex; flex-direction:column; gap:10px;"></div>
+        <p id="q-feedback" style="margin-top:20px; font-weight:bold; min-height: 1.2em;"></p>
+    </div>
+</div>
+
+<script>
+const questions = [
+    {
+        text: "Qual è il primo passo del 'Metodo degli Stati'?",
+        options: ["Calcolare subito la corrente", "Fare un'ipotesi sullo stato dei diodi (ON/OFF)", "Sostituire i diodi con condensatori", "Misurare con il tester"],
+        correct: 1
+    },
+    {
+        text: "Nel modello a caduta costante, con cosa sostituisci un diodo ON?",
+        options: ["Un filo ideale (0V)", "Una batteria da 0.7V", "Una resistenza infinita", "Un generatore di corrente"],
+        correct: 1
+    },
+    {
+        text: "Se alla fine dei calcoli trovi una corrente negativa in un diodo ipotizzato ON, cosa significa?",
+        options: ["Che il diodo è rotto", "Che
