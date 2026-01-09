@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Esercizio 3 – Forme d'Onda in Circuiti a Diodi"
+title: "Esercizio 3 – Forme d'Onda (Selettore di Massimo)"
 ---
 
 # Esercizio 3 – Forme d'Onda (Selettore di Massimo)
@@ -9,10 +9,16 @@ title: "Esercizio 3 – Forme d'Onda in Circuiti a Diodi"
 
 ---
 
+## 🔗 Soluzione Completa
+Per vedere i grafici dettagliati e lo svolgimento originale:
+👉 **[Apri la soluzione ufficiale su Overleaf](https://www.overleaf.com/read/vwzzvdrpwfqh#f5e496)**
+
+---
+
 ## 📐 Schema del Circuito
 
-![Schema Selettore a Diodi](image1.png)
-*(Circuito composto da due diodi con catodi in comune e resistenza verso massa. Nota: Assicurati che l'immagine si chiami `image1.png`)*
+![Schema Selettore a Diodi](esercizio3.png)
+*(Circuito selettore di massimo con due diodi e resistenza verso massa)*
 
 ---
 
@@ -71,19 +77,17 @@ $$v_o = 5V - 0.6V = \mathbf{4.4V \, (Costante)}$$
 
 ## 📚 Sintesi Teorica: Le Porte Logiche a Diodi
 
-Questo esercizio (insieme all'Esercizio 2) copre le due configurazioni fondamentali della logica Diodo-Resistenza (**DL - Diode Logic**):
+Questo esercizio conclude la coppia sulle porte logiche a discreti (**DL - Diode Logic**):
 
-| Configurazione | Nome Logico | Funzione Matematica | Comportamento Elettrico |
+| Esercizio | Logica | Funzione | Comportamento Elettrico |
 | :--- | :--- | :--- | :--- |
-| **Esercizio 2** | **AND** (Minimo) | $Y = \min(A, B)$ | "Tira verso il basso" (Pull-down dei diodi, R verso $V_{CC}$) |
-| **Esercizio 3** | **OR** (Massimo) | $Y = \max(A, B)$ | "Tira verso l'alto" (Pull-up dei diodi, R verso Massa) |
+| **Esercizio 2** | **AND** (Minimo) | $Y = \min(A, B)$ | "Pull-down" (Diodi verso Ingressi, R verso $V_{CC}$) |
+| **Esercizio 3** | **OR** (Massimo) | $Y = \max(A, B)$ | "Pull-up" (Diodi verso Uscita, R verso Massa) |
 
-### 🔗 Approfondimenti Esterni Consigliati
-Per consolidare la teoria sulle porte logiche e i circuiti digitali di base:
+---
 
-* **[Logica a Diodi (Wikipedia)](https://it.wikipedia.org/wiki/Logica_a_diodi)** - Panoramica essenziale.
-* **[Logic Gates - Electronics Tutorials](https://www.electronics-tutorials.ws/logic/logic_1.html)** (Inglese) - Ottima risorsa con schemi chiari.
-* **[Digital Logic - AllAboutCircuits](https://www.allaboutcircuits.com/textbook/digital/chpt-3/logic-gates/)** (Inglese) - Manuale completo online.
+**Navigazione:**
+[← Esercizio 2 (Porta AND)](esercizio2) | [🏠 Torna alla Home](./)
 
 ---
 
