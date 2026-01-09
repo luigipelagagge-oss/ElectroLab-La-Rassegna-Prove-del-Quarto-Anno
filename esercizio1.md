@@ -171,6 +171,78 @@ Di seguito la struttura logica per ciascun valore di V1.
     🎧 Ascolta il podcast interattivo su Google Drive
   </a>
 </div>
+<div id="quiz-overlay" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:9999; display:flex; justify-content:center; align-items:center; color:white; font-family:sans-serif;">
+    <div style="background:#222; padding:30px; border-radius:10px; max-width:500px; text-align:center; border: 2px solid #00ff00;">
+        <h2 id="q-title">🔒 Accesso Bloccato</h2>
+        <p id="q-text" style="font-size:1.2em; margin:20px 0;">Caricamento domanda...</p>
+        <div id="q-options" style="display:flex; flex-direction:column; gap:10px;"></div>
+        <p id="q-feedback" style="margin-top:15px; font-weight:bold;"></p>
+    </div>
+</div>
+
+<script>
+// --- CONFIGURAZIONE DOMANDE ESERCIZIO 1 ---
+const questions = [
+    {
+        text: "Qual è la tensione di soglia tipica (Vγ) per un diodo al Silicio?",
+        options: ["0.2 V", "0.6 - 0.7 V", "1.5 V", "5 V"],
+        correct: 1 // Indice della risposta corretta (0, 1, 2...)
+    },
+    {
+        text: "RECUPERO: Se polarizzi un diodo inversamente (Anodo negativo, Catodo positivo), come si comporta idealmente?",
+        options: ["Come un cortocircuito (passa corrente)", "Come un resistore da 1kΩ", "Come un interruttore aperto (non passa corrente)", "Emette luce"],
+        correct: 2
+    },
+    {
+        text: "RECUPERO 2: La retta di carico si disegna unendo quali punti?",
+        options: ["Vcc sull'asse X e Vcc/R sull'asse Y", "L'origine e il punto di lavoro", "Solo i punti di saturazione"],
+        correct: 0
+    }
+];
+
+let currentQ = 0;
+
+function loadQuestion() {
+    const q = questions[currentQ];
+    document.getElementById("q-text").innerText = q.text;
+    const optsDiv = document.getElementById("q-options");
+    optsDiv.innerHTML = "";
+    
+    q.options.forEach((opt, index) => {
+        let btn = document.createElement("button");
+        btn.innerText = opt;
+        btn.style.padding = "10px";
+        btn.style.cursor = "pointer";
+        btn.style.fontSize = "1em";
+        btn.onclick = () => checkAnswer(index);
+        optsDiv.appendChild(btn);
+    });
+}
+
+function checkAnswer(selectedIndex) {
+    if (selectedIndex === questions[currentQ].correct) {
+        // Risposta Esatta
+        document.getElementById("q-feedback").style.color = "#00ff00";
+        document.getElementById("q-feedback").innerText = "✅ Risposta Esatta! Accesso consentito.";
+        setTimeout(() => {
+            document.getElementById("quiz-overlay").style.display = "none";
+        }, 1000);
+    } else {
+        // Risposta Errata
+        document.getElementById("q-feedback").style.color = "#ff4444";
+        document.getElementById("q-feedback").innerText = "❌ Errato. Prova la domanda di recupero...";
+        setTimeout(() => {
+            currentQ++;
+            if (currentQ >= questions.length) currentQ = 0; // Ricomincia il giro se finiscono
+            document.getElementById("q-feedback").innerText = "";
+            loadQuestion();
+        }, 1500);
+    }
+}
+
+// Avvio
+loadQuestion();
+</script>
 
 ---
 
