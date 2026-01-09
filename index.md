@@ -46,8 +46,7 @@ Qui troverai esercizi, richiami teorici, figure tratte dai materiali originali e
   → [Esercizio 1](esercizio1.md)  
   → [Esercizio 2](esercizio2.md)  
   → [Esercizio 3](esercizio3.md)  
-  → …  
-  → [Esercizio N](esercizioN.md)
+  
 
 ## 🎥 Video didattici allegati
 
